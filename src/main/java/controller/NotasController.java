@@ -144,58 +144,6 @@ public class NotasController extends HttpServlet {
         
     }
 
-    private void inserirDesempenho(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
-        int qtdeTurma = 0;
-        int codTurma = Integer.parseInt(request.getParameter("codTurma"));
-
-        try {
-             qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
-        } catch (SQLException | IOException throwables) {
-            throwables.printStackTrace();
-        }
-        if (qtdeTurma == 0){
-            qtdeTurma = 20;
-        }else{
-            qtdeTurma = 20 - qtdeTurma;
-        }
-
-        for (int idx = 0; idx< qtdeTurma; idx++){
-            String codAlunoStr = request.getParameter("codAluno["+idx+"]");
-            String nota1Str = request.getParameter("nota1["+idx+"]");
-            String nota2Str = request.getParameter("nota2["+idx+"]");
-            String nota3Str = request.getParameter("nota3["+idx+"]");
-            String nota4Str = request.getParameter("nota4["+idx+"]");
-
-            desempenho.setCodDisciplina(Integer.parseInt(request.getParameter("codDisciplina")));
-            if (codAlunoStr.equals(null)){
-                desempenho.setCod_aluno(0);
-            }else {
-                desempenho.setCodDisciplina(Integer.parseInt(codAlunoStr));
-            }
-            if( nota1Str.equals(null)){
-                desempenho.setNota1(0);
-            }else {
-                desempenho.setNota1(Integer.parseInt(nota1Str));
-            }
-            if( nota2Str.equals(null)){
-                desempenho.setNota2(0);
-            }else {
-                desempenho.setNota2(Integer.parseInt(nota2Str));
-            }
-            if( nota3Str.equals(null)){
-                desempenho.setNota3(0);
-            }else {
-                desempenho.setNota3(Integer.parseInt(nota2Str));
-            }
-            if( nota4Str.equals(null)){
-                desempenho.setNota4(0);
-            }else {
-                desempenho.setNota4(Integer.parseInt(nota2Str));
-            }
-
-            //daoDesp.adicionarDesempenho(desempenho);
-        }
-    }
 
 
     @Override
@@ -259,11 +207,64 @@ public class NotasController extends HttpServlet {
             nota4 = Double.parseDouble(request.getParameter("nota4"));
             
         }
-
-        Desempenho dados = new Desempenho(nota1,nota2,nota3,nota4);
-        request.setAttribute("dados", dados);
-        request.setAttribute("disciplinaID", codDisciplina);
+        int qtdeTurma = 0;
         
+        try {
+             qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
+        }
+        if (qtdeTurma == 0){
+            qtdeTurma = 20;
+        }else{
+            qtdeTurma = 20 - qtdeTurma;
+        }
+        
+        for (int idx = 0; idx < qtdeTurma; idx++){
+            String codAlunoStr = request.getParameter("codAluno["+idx+"]");
+            String nota1Str = request.getParameter("nota1["+idx+"]");
+            String nota2Str = request.getParameter("nota2["+idx+"]");
+            String nota3Str = request.getParameter("nota3["+idx+"]");
+            String nota4Str = request.getParameter("nota4["+idx+"]");
+
+            desempenho.setCodDisciplina(Integer.parseInt(request.getParameter("DisciplinaCod")));
+            
+            if (codAlunoStr == null){
+                desempenho.setCod_aluno(0);
+            }else {
+                desempenho.setCodDisciplina(Integer.parseInt(codAlunoStr));
+            }
+            if( nota1Str == null){
+                desempenho.setNota1(0);
+            }else {
+                desempenho.setNota1(Integer.parseInt(nota1Str));
+            }
+            if( nota2Str == null){
+                desempenho.setNota2(0);
+            }else {
+                desempenho.setNota2(Integer.parseInt(nota2Str));
+            }
+            if( nota3Str == null){
+                desempenho.setNota3(0);
+            }else {
+                desempenho.setNota3(Integer.parseInt(nota2Str));
+            }
+            if( nota4Str == null){
+                desempenho.setNota4(0);
+            }else {
+                desempenho.setNota4(Integer.parseInt(nota2Str));
+            }
+            
+            try {
+                daoDesp.updateDesempenho(desempenho, codDisciplina);
+            } catch (SQLException ex) {
+                Logger.getLogger(NotasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+            Desempenho dados = new Desempenho(nota1,nota2,nota3,nota4);
+            //request.setAttribute("dados", dados);
+            request.setAttribute("disciplinaID", codDisciplina);
         
             if (temErro && codTurma != 0) {
                 
@@ -306,28 +307,5 @@ public class NotasController extends HttpServlet {
         }
         
     }
-
-
-
-    protected void Redirecionar(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //Direcionando para tela JSP.
-        request.getRequestDispatcher("/WEB-INF/jsp/registro/notas.jsp").forward(request, response);
-    }
-
-    protected void ListaAlunos(HttpServletRequest request, HttpServletResponse response,int codTurma)
-            throws ServletException, IOException, SQLException {
-        //Criando um atributo chamado Alunos e inserindo a lista que veio do metodo getAllAlunos
-        for(int i =0; i<=daoT.listarAlunosDaTurma(codTurma).toArray().length; i++) {
-            
-        }
-        Redirecionar(request,response);
-    }
-
-    protected void ListaDesempenho(HttpServletRequest request, HttpServletResponse response,int codTurma,int codDisciplina)
-            throws ServletException, IOException, SQLException {
-
-            request.setAttribute("desempenho", daoDesp.DesempenhoDisciplinaTurma(codTurma,codDisciplina));
-    }
-    
+   
 }

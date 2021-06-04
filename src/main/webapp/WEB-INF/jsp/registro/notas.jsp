@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                             <!-- atributo Alunos vem da classe AlunoControlles na linha 65  -->
-                            <c:forEach items="${alunos}" var="alunos">
+                            <c:forEach items="${alunos}" var="idx">
 
                                 <tr>
 
