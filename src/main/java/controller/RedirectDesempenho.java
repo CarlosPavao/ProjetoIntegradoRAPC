@@ -48,6 +48,8 @@ public class RedirectDesempenho extends HttpServlet {
             sessao.removeAttribute("codDisciplina");
 
             request.setAttribute("dados", dados);
+            
+            /*
             try {
                 dao.updateDesempenho(dados,discplinaID);
                 RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/jsp/registro/notasSucesso.jsp");
@@ -60,5 +62,7 @@ public class RedirectDesempenho extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/registro/notasErro.jsp");
             dispatcher.forward(request, response);
         }
+*/
+
     }
 }

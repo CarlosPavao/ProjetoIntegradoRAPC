@@ -67,13 +67,14 @@
                     </thead>
                     <tbody>
                         <!<!-- atributo Alunos vem da classe AlunoControlles na linha 65  -->
-                        <c:forEach items="${listaTurma}" var="alunos" var="idx">
+                        <c:forEach items="${listaTurma}" var="alunos">
 
                             <tr>
 
                                 <!-- Código do Aluno -->
                                 <th scope="row">
-
+                                    
+                                   
                                     <label class="form-control" name="codAluno[${idx}]">
                                         <c:out value="${alunos.cod_aluno}" />
                                     </label>
@@ -95,7 +96,7 @@
                                 </td>
 
                                 <!-- Nota 1 -->
-
+                                
                                     <td>
                                         <input class="form-control"  id="nota1" type="text" name="nota1[${idx}]"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0"
@@ -125,8 +126,10 @@
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0" 
                                                value="<c:out value="${alunos.nota4}" />">
                                     </td>
+                                    
                                 </tr>
                             </tr>
+                        
                         </c:forEach>
                     </tbody>
                 </table>

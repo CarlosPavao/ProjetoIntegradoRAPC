@@ -48,6 +48,7 @@
                 
                  <input type="hidden" name="turmaCod" value="<c:out value="${codTurma}" />">
                 <input type="hidden" name="DisciplinaCod" value="<c:out value="${codDisciplina}" />">
+
                 
                 <table border="1">
                     <thead>
@@ -62,15 +63,18 @@
                     </thead>
                     <tbody>
                              <!<!-- atributo Alunos vem da classe AlunoControlles na linha 65  -->
-                            <c:forEach items="${listaTurmaDisciplina}" var="idx">
+                             <c:forEach items="${listaTurmaDisciplina}" var="lista">
 
                                 <tr>
 
                                     <!-- Código do Aluno -->
+                                    
                                     <th scope="row">
-                                        <label class="form-control" name="codAluno[${idx}]">
+                                        <label class="form-control" name="codAluno">
                                             <c:out value="${lista.cod_aluno}"/>
                                         </label>
+                                        <input type="hidden" name="alunoCod" value="<c:out value="${lista.cod_aluno}" />">
+                                     
                                     </th>
 
 
@@ -86,7 +90,7 @@
                                     <!-- Nota 1 -->
 
                                     <td>
-                                        <input class="form-control"  id="nota1" type="text" name="nota1[${idx}]"
+                                        <input class="form-control"  id="nota1" type="text" name="nota1"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0"
                                                value="<c:out value="${lista.nota1}" />">
                                     </td>
@@ -94,7 +98,7 @@
                                     <!-- Nota 2 -->
 
                                     <td>
-                                        <input class="form-control"  id="nota2" type="text" name="nota2[${idx}]"
+                                        <input class="form-control"  id="nota2" type="text" name="nota2"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0"
                                                value="<c:out value="${lista.nota2}" />">
                                     </td>
@@ -102,7 +106,7 @@
                                     <!-- Nota 3 -->
 
                                     <td>
-                                        <input class="form-control"  id="nota3" type="text" name="nota3[${idx}]"
+                                        <input class="form-control"  id="nota3" type="text" name="nota3"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0"
                                                value="<c:out value="${lista.nota3}" />">
                                     </td>
@@ -110,7 +114,7 @@
                                     <!-- Nota 4 -->
 
                                     <td>
-                                        <input class="form-control"  id="nota4" type="text" name="nota4[${idx}]"
+                                        <input class="form-control"  id="nota4" type="text" name="nota4"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0" 
                                                value="<c:out value="${lista.nota4}" />">
                                     </td>

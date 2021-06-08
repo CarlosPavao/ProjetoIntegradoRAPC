@@ -48,6 +48,7 @@
                 
                  <input type="hidden" name="turmaCod" value="<c:out value="${codTurma}" />">
                 <input type="hidden" name="DisciplinaCod" value="<c:out value="${codDisciplina}" />">
+
                 
                 <table border="1">
                     <thead>
@@ -62,13 +63,18 @@
                     </thead>
                     <tbody>
                              <!<!-- atributo Alunos vem da classe AlunoControlles na linha 65  -->
-                            <c:forEach items="${listaTurmaDisciplina}" var="lista">
+                             <c:forEach items="${listaTurmaDisciplina}" var="lista">
 
                                 <tr>
 
                                     <!-- Código do Aluno -->
+                                    
                                     <th scope="row">
-                                            <c:out value="${lista.cod_aluno}" />
+                                        <label class="form-control" name="codAluno">
+                                            <c:out value="${lista.cod_aluno}"/>
+                                        </label>
+                                        <input type="hidden" name="alunoCod" value="<c:out value="${lista.cod_aluno}" />">
+                                     
                                     </th>
 
 

@@ -152,12 +152,14 @@ public class NotasController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        int cod_aluno;
         int codTurma;
         int codDisciplina;
         double nota1;
         double nota2;
         double nota3;
         double nota4;
+        
         
         boolean temErro = false;
         
@@ -219,16 +221,28 @@ public class NotasController extends HttpServlet {
         }else{
             qtdeTurma = 20 - qtdeTurma;
         }
+            String[] codAlunoStr = request.getParameterValues("alunoCod");
+            String[] nota1Str = request.getParameterValues("nota1");
+            String[] nota2Str = request.getParameterValues("nota2");
+            String[] nota3Str = request.getParameterValues("nota3");
+            String[] nota4Str = request.getParameterValues("nota4");
         
-        for (int idx = 0; idx < qtdeTurma; idx++){
-            String codAlunoStr = request.getParameter("codAluno["+idx+"]");
-            String nota1Str = request.getParameter("nota1["+idx+"]");
-            String nota2Str = request.getParameter("nota2["+idx+"]");
-            String nota3Str = request.getParameter("nota3["+idx+"]");
-            String nota4Str = request.getParameter("nota4["+idx+"]");
+            for (int idx = 0; idx < qtdeTurma; idx++) {
 
-            desempenho.setCodDisciplina(Integer.parseInt(request.getParameter("DisciplinaCod")));
-            
+           
+            cod_aluno = Integer.parseInt(codAlunoStr[idx]);
+            nota1 = Double.parseDouble(nota1Str[idx]);
+            nota2 = Double.parseDouble(nota2Str[idx]);
+            nota3 = Double.parseDouble(nota3Str[idx]);
+            nota4 = Double.parseDouble(nota4Str[idx]);
+            try {
+                Desempenho notas = new Desempenho(nota1,nota2,nota3,nota4);
+                
+                daoDesp.updateDesempenho(notas, codDisciplina,cod_aluno);
+            } catch (SQLException ex) {
+                Logger.getLogger(NotasController.class.getName()).log(Level.SEVERE, null, ex);
+            }      
+            /*
             if (codAlunoStr == null){
                 desempenho.setCod_aluno(0);
             }else {
@@ -247,21 +261,16 @@ public class NotasController extends HttpServlet {
             if( nota3Str == null){
                 desempenho.setNota3(0);
             }else {
-                desempenho.setNota3(Integer.parseInt(nota2Str));
+                desempenho.setNota3(Integer.parseInt(nota3Str));
             }
             if( nota4Str == null){
                 desempenho.setNota4(0);
             }else {
-                desempenho.setNota4(Integer.parseInt(nota2Str));
+                desempenho.setNota4(Integer.parseInt(nota4Str));
             }
-            
-            try {
-                daoDesp.updateDesempenho(desempenho, codDisciplina);
-            } catch (SQLException ex) {
-                Logger.getLogger(NotasController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
+            */
+  
+        }    /*
             Desempenho dados = new Desempenho(nota1,nota2,nota3,nota4);
             //request.setAttribute("dados", dados);
             request.setAttribute("disciplinaID", codDisciplina);
@@ -305,7 +314,6 @@ public class NotasController extends HttpServlet {
             sessao.setAttribute("disciplinaID", codDisciplina);
             response.sendRedirect(request.getContextPath() + "/redirectDesempenho");
         }
-        
+        */
     }
-   
 }

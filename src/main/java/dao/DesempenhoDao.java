@@ -16,9 +16,9 @@ public class DesempenhoDao {
     private final DbUtil dbUtil = new DbUtil();
     
 
-    public void updateDesempenho(Desempenho desempenho,int disciplinaID) throws SQLException, IOException {
+    public void updateDesempenho(Desempenho desempenho,int disciplinaID,int codAluno) throws SQLException, IOException {
         String sql = "UPDATE desempenho SET nota1 = ?,nota2 = ?,nota3 = ?,"
-                + "nota4 = ? WHERE fk_disciplinaID = ?";
+                + "nota4 = ? WHERE fk_disciplinaID = ? AND fk_cod_aluno = ?";
         try (Connection conn = dbUtil.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -27,6 +27,7 @@ public class DesempenhoDao {
             stmt.setDouble(3, desempenho.getNota3());
             stmt.setDouble(4, desempenho.getNota4());
             stmt.setInt(5, disciplinaID);
+            stmt.setInt(6, codAluno);
             //stmt.setInt(6, cod_aluno);
             //Executar atualização no banco
             stmt.executeUpdate();
