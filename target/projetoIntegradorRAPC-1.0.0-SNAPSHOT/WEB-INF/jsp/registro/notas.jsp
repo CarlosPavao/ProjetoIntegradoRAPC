@@ -70,6 +70,7 @@
                                         <label class="form-control" name="codAluno[${idx}]">
                                             <c:out value="${alunos.cod_aluno}" />
                                         </label>
+                                        <input type="hidden" name="alunoCod" value="<c:out value="${lista.cod_aluno}" />">
 
                                     </th>
 

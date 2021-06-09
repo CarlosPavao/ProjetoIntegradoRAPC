@@ -70,7 +70,7 @@ public class DesempenhoDao {
     
     public List<Desempenho> desempenhoPorTurma(int turmaID) throws SQLException, IOException {
         String sql = "SELECT cod_aluno,aluno.nome,disciplinas.nome disciplina,"
-                + "nota1,nota2,nota3,nota4 FROM desempenho INNER JOIN"
+                + "nota1,nota2,nota3,nota4,fk_disciplinaID FROM desempenho INNER JOIN"
                 + " aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno "
                 + "INNER JOIN disciplinas ON desempenho.fk_disciplinaID ="
                 + " disciplinas.disciplinaID WHERE fk_turma = ?";
@@ -93,6 +93,7 @@ public class DesempenhoDao {
                 desempenho.setNota2(rst.getDouble("nota2"));
                 desempenho.setNota3(rst.getDouble("nota3"));
                 desempenho.setNota4(rst.getDouble("nota4"));
+                desempenho.setCodDisciplina(rst.getInt("fk_disciplinaID"));
 
                 listaDesempenho.add(desempenho);
             }
@@ -105,8 +106,36 @@ public class DesempenhoDao {
         }
         return listaDesempenho;
     }
+    public Desempenho qteAlunoTurma(int turmaID) throws SQLException, IOException {
+        String sql = "SELECT sum(1) AS qteOco FROM desempenho INNER JOIN"
+                + " aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno "
+                + "INNER JOIN disciplinas ON desempenho.fk_disciplinaID ="
+                + " disciplinas.disciplinaID WHERE fk_turma = ?";
+        
+        Desempenho obj = new Desempenho(turmaID);
+        Connection conn = dbUtil.getConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, turmaID);
+            //Execultando o comando
+            ResultSet rst = stmt.executeQuery();
+            
+            if (rst.next()){
+                obj.setQteOco(rst.getInt("qteOco"));
+
+            }
+            conn.close();
+            stmt.close();
+            rst.close();
+        } catch (SQLException e) {
+            System.err.println("Ocorreu um erro levantar a quantidade de"
+                    + " alunos pela turma: " + turmaID );
+        }
+        return obj;
+    }
     public List<Desempenho> desempenhoPorTurmaDisciplina(int turmaID, int disciplinaID) throws SQLException, IOException {
-        String sql = "SELECT cod_aluno,nome,nota1,nota2,nota3,nota4 "
+        String sql = "SELECT cod_aluno,nome,nota1,nota2,nota3,nota4,fk_disciplinaID "
                 + "FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno"
                 + " = aluno.cod_aluno WHERE fk_turma = ? AND fk_disciplinaID = ?";
         
@@ -128,6 +157,7 @@ public class DesempenhoDao {
                 desempenho.setNota2(rst.getDouble("nota2"));
                 desempenho.setNota3(rst.getDouble("nota3"));
                 desempenho.setNota4(rst.getDouble("nota4"));
+                desempenho.setCodDisciplina(rst.getInt("fk_disciplinaID"));
 
                 listaDesempenho.add(desempenho);
             }

@@ -287,4 +287,32 @@ select * from aluno;
 select * from turma;
 */
 
+use projetorapc;
 
+select * from disciplina;
+update desempenho set nota1 = 0, nota2 = 0, nota3 = 0, nota4=0 where fk_disciplinaID = 1;
+
+select * from desempenho;
+
+select * from frequencia;
+
+date now();
+
+UPDATE desempenho SET nota1 = 1 WHERE fk_disciplinaID = 1 AND fk_cod_aluno = 1;
+
+select * from turma;
+
+select * from turma;
+
+update turma set qte = 18 where cod_turma =2;
+
+select * from aluno;
+
+select * from aluno;
+
+SELECT cod_aluno,aluno.nome,disciplinas.nome disciplina,
+nota1,nota2,nota3,nota4,sum(1) Qte  FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
+INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1;
+
+SELECT sum(1) FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
+INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1

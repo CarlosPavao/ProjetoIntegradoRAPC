@@ -53,9 +53,9 @@ public class NotasController extends HttpServlet {
 
         if (action.equals("/notasController")) {
             //Captando informações do banco para o Select
-            
+
             try {
-                
+
                 request.setAttribute("turmas", daoT.getAllTurmas());
                 request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());
             } catch (SQLException ex) {
@@ -63,16 +63,14 @@ public class NotasController extends HttpServlet {
             }
             request.getRequestDispatcher("/WEB-INF/jsp/registro/notas.jsp").forward(request, response);
 
-        }
-        else if (action.equalsIgnoreCase("ListNota")) {
+        } else if (action.equalsIgnoreCase("ListNota")) {
             forward = LIST_NOTA;
             try {
                 request.setAttribute("notas", daoDesp.getAllDesempenho());
             } catch (SQLException ex) {
                 Logger.getLogger(NotasController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else if (action.equals("/selectionDisc")) {
+        } else if (action.equals("/selectionDisc")) {
             int codTurma;
             int codDisciplina;
 
@@ -92,39 +90,37 @@ public class NotasController extends HttpServlet {
                 codDisciplina = Integer.parseInt(request.getParameter("codDisciplina"));
             }
             if (temErro && codTurma != 0) {
-                
+
                 try {
                     request.setAttribute("turmaD", daoT.recuperaListaTurmaDifer(codTurma));
                     request.setAttribute("turmaR", daoT.recuperaTurma(codTurma));
                     request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());
                     request.setAttribute("listaTurma", daoDesp.desempenhoPorTurma(codTurma));
-                    
-            }   catch (SQLException ex) {
-                Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 request.getRequestDispatcher("/WEB-INF/jsp/registro/notasValidacao1.jsp").forward(request, response);
-            }
-             else if (temErro && codDisciplina != 0) {
-                
+            } else if (temErro && codDisciplina != 0) {
+
                 try {
                     request.setAttribute("turmas", daoT.getAllTurmas());
                     request.setAttribute("disciplinaR", daoDisc.recuperaDisci(codDisciplina));
                     request.setAttribute("discplinaD", daoDisc.recuperaListaDisciDifer(codDisciplina));
 
-            }   catch (SQLException ex) {
-                Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 request.getRequestDispatcher("/WEB-INF/jsp/registro/notasValidacao2.jsp").forward(request, response);
-            }
-             else if (codTurma == 0 && codDisciplina == 0) {
-                
+            } else if (codTurma == 0 && codDisciplina == 0) {
+
                 try {
                     request.setAttribute("turmas", daoT.getAllTurmas());
-                    request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());  
+                    request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());
 
-            }   catch (SQLException ex) {
-                Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 request.getRequestDispatcher("/WEB-INF/jsp/registro/notasValidacao.jsp").forward(request, response);
             } else {
                 try {
@@ -141,17 +137,15 @@ public class NotasController extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/jsp/registro/notas2.jsp").forward(request, response);
             }
         }
-        
+
     }
-
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+
         int cod_aluno;
         int codTurma;
         int codDisciplina;
@@ -159,21 +153,22 @@ public class NotasController extends HttpServlet {
         double nota2;
         double nota3;
         double nota4;
-        
-        
+        int qtdeTurma = 0;
+        int qteOcoAluno = 0;
+
         boolean temErro = false;
-        
+
         // VALIDAÇÕES
-        if (request.getParameter("turmaCod") == null || request.getParameter("turmaCod").equals("")  ) {
+        if (request.getParameter("turmaCod") == null || request.getParameter("turmaCod").equals("")) {
             codTurma = 0;
             temErro = true;
             request.setAttribute("erroTurma", "Turma não informada.");
         } else {
-            
+
             codTurma = Integer.parseInt(request.getParameter("turmaCod"));
-            
+
         }
-        if (request.getParameter("DisciplinaCod") == null || request.getParameter("DisciplinaCod").equals("")){
+        if (request.getParameter("DisciplinaCod") == null || request.getParameter("DisciplinaCod").equals("")) {
             codDisciplina = 0;
             temErro = true;
             request.setAttribute("erroDisciplina", "Disciplina não informada.");
@@ -184,136 +179,117 @@ public class NotasController extends HttpServlet {
         }
         if (request.getParameter("nota1") == null || request.getParameter("nota1").equals("")) {
             nota1 = 0.0;
-            temErro = true;
-            request.setAttribute("erroTurma", "Turma não informada.");
-            request.setAttribute("erroDisciplina", "Disciplina não informada.");
+
         } else {
             nota1 = Double.parseDouble(request.getParameter("nota1"));
-            
+
         }
         if (request.getParameter("nota2") == null || request.getParameter("nota2").equals("")) {
             nota2 = 0.0;
         } else {
             nota2 = Double.parseDouble(request.getParameter("nota2"));
-            
+
         }
         if (request.getParameter("nota3") == null || request.getParameter("nota3").equals("")) {
             nota3 = 0.0;
         } else {
             nota3 = Double.parseDouble(request.getParameter("nota3"));
-            
+
         }
         if (request.getParameter("nota4") == null || request.getParameter("nota4").equals("")) {
             nota4 = 0.0;
         } else {
             nota4 = Double.parseDouble(request.getParameter("nota4"));
-            
-        }
-        int qtdeTurma = 0;
-        
-        try {
-             qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
-        } catch (SQLException | IOException throwables) {
-            throwables.printStackTrace();
-        }
-        if (qtdeTurma == 0){
-            qtdeTurma = 20;
-        }else{
-            qtdeTurma = 20 - qtdeTurma;
-        }
-            String[] codAlunoStr = request.getParameterValues("alunoCod");
-            String[] nota1Str = request.getParameterValues("nota1");
-            String[] nota2Str = request.getParameterValues("nota2");
-            String[] nota3Str = request.getParameterValues("nota3");
-            String[] nota4Str = request.getParameterValues("nota4");
-        
-            for (int idx = 0; idx < qtdeTurma; idx++) {
 
-           
-            cod_aluno = Integer.parseInt(codAlunoStr[idx]);
-            nota1 = Double.parseDouble(nota1Str[idx]);
-            nota2 = Double.parseDouble(nota2Str[idx]);
-            nota3 = Double.parseDouble(nota3Str[idx]);
-            nota4 = Double.parseDouble(nota4Str[idx]);
-            try {
-                Desempenho notas = new Desempenho(nota1,nota2,nota3,nota4);
-                
-                daoDesp.updateDesempenho(notas, codDisciplina,cod_aluno);
-            } catch (SQLException ex) {
-                Logger.getLogger(NotasController.class.getName()).log(Level.SEVERE, null, ex);
-            }      
-            /*
-            if (codAlunoStr == null){
-                desempenho.setCod_aluno(0);
-            }else {
-                desempenho.setCodDisciplina(Integer.parseInt(codAlunoStr));
-            }
-            if( nota1Str == null){
-                desempenho.setNota1(0);
-            }else {
-                desempenho.setNota1(Integer.parseInt(nota1Str));
-            }
-            if( nota2Str == null){
-                desempenho.setNota2(0);
-            }else {
-                desempenho.setNota2(Integer.parseInt(nota2Str));
-            }
-            if( nota3Str == null){
-                desempenho.setNota3(0);
-            }else {
-                desempenho.setNota3(Integer.parseInt(nota3Str));
-            }
-            if( nota4Str == null){
-                desempenho.setNota4(0);
-            }else {
-                desempenho.setNota4(Integer.parseInt(nota4Str));
-            }
-            */
-  
-        }    /*
-            Desempenho dados = new Desempenho(nota1,nota2,nota3,nota4);
-            //request.setAttribute("dados", dados);
-            request.setAttribute("disciplinaID", codDisciplina);
-        
-            if (temErro && codTurma != 0) {
-                
+        }
+            if (codTurma != 0) {
+
                 try {
                     request.setAttribute("turmaD", daoT.recuperaListaTurmaDifer(codTurma));
                     request.setAttribute("turmaR", daoT.recuperaTurma(codTurma));
-                    request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());                   
-            }   catch (SQLException ex) {
-                Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                request.getRequestDispatcher("/WEB-INF/jsp/registro/notasValidacao1.jsp").forward(request, response);
-            }
-             else if (temErro && codDisciplina != 0) {
-                
+                    request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());
+                    request.setAttribute("listaTurma", daoDesp.desempenhoPorTurma(codTurma));
+                    qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
+                    qteOcoAluno = daoDesp.qteAlunoTurma(codTurma).getQteOco();
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else if (codDisciplina != 0) {
+
                 try {
                     request.setAttribute("turmas", daoT.getAllTurmas());
                     request.setAttribute("disciplinaR", daoDisc.recuperaDisci(codDisciplina));
                     request.setAttribute("discplinaD", daoDisc.recuperaListaDisciDifer(codDisciplina));
 
-            }   catch (SQLException ex) {
-                Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 request.getRequestDispatcher("/WEB-INF/jsp/registro/notasValidacao2.jsp").forward(request, response);
-            }
-             else if (codTurma == 0 && codDisciplina == 0) {
-                
+            } else if (codTurma == 0 && codDisciplina == 0) {
+
                 try {
                     request.setAttribute("turmas", daoT.getAllTurmas());
-                    request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());  
+                    request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());
 
-            }   catch (SQLException ex) {
-                Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 request.getRequestDispatcher("/WEB-INF/jsp/registro/notasValidacao.jsp").forward(request, response);
             } else {
-            HttpSession sessao = request.getSession();
-            sessao.setAttribute("dados", dados);
-            sessao.setAttribute("disciplinaID", codDisciplina);
-            response.sendRedirect(request.getContextPath() + "/redirectDesempenho");
+                try {
+                    request.setAttribute("turmaD", daoT.recuperaListaTurmaDifer(codTurma));
+                    request.setAttribute("turmaR", daoT.recuperaTurma(codTurma));
+                    request.setAttribute("listaTurmaDisciplina", daoDesp.desempenhoPorTurmaDisciplina(codTurma, codDisciplina));
+                    request.setAttribute("disciplinaR", daoDisc.recuperaDisci(codDisciplina));
+                    request.setAttribute("discplinaD", daoDisc.recuperaListaDisciDifer(codDisciplina));
+                } catch (SQLException ex) {
+                    Logger.getLogger(NotasController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                request.setAttribute("codTurma", codTurma);
+                request.setAttribute("codDisciplina", codDisciplina);
+                request.getRequestDispatcher("/WEB-INF/jsp/registro/notas2.jsp").forward(request, response);
+            }
+        /*
+        try {
+            qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
+            qteOcoAluno = daoDesp.qteAlunoTurma(codTurma).getQteOco();
+        } catch (SQLException | IOException throwables) {
+            throwables.printStackTrace();
         }
         */
+        if (qtdeTurma == 0) {
+            qtdeTurma = 20;
+        } else if(codDisciplina != 0 && qtdeTurma !=0)  {
+            qtdeTurma = 20 - qtdeTurma;
+        }
+        else {
+            qtdeTurma = qteOcoAluno;
+        }
+        
+        String[] codAlunoStr = request.getParameterValues("alunoCod");
+        String[] nota1Str = request.getParameterValues("nota1");
+        String[] nota2Str = request.getParameterValues("nota2");
+        String[] nota3Str = request.getParameterValues("nota3");
+        String[] nota4Str = request.getParameterValues("nota4");
+        String[] disciplinaStr = request.getParameterValues("disciCod");
+
+         for (int i = 0; i < qtdeTurma; i++) {
+
+            cod_aluno = Integer.parseInt(codAlunoStr[i]);
+            nota1 = Double.parseDouble(nota1Str[i]);
+            nota2 = Double.parseDouble(nota2Str[i]);
+            nota3 = Double.parseDouble(nota3Str[i]);
+            nota4 = Double.parseDouble(nota4Str[i]);
+            codDisciplina = Integer.parseInt(disciplinaStr[i]);
+            try {
+                Desempenho notas = new Desempenho(nota1, nota2, nota3, nota4);
+                daoDesp.updateDesempenho(notas, codDisciplina, cod_aluno);
+            } catch (SQLException ex) {
+                Logger.getLogger(NotasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+         request.getRequestDispatcher("/WEB-INF/jsp/registro/notasSucesso.jsp").forward(request, response);
     }
 }

@@ -52,7 +52,7 @@
                     <input role="button" aria-pressed="true" type="submit" value="Pesquisar" />
                 </form>
             
-                <form method="POST"  name="frmNotas" action="${request.contextPath}notasController" var="idx">
+                <form method="POST"  name="frmNotas" action="${request.contextPath}notasController">
                 <table border="1">
                     <thead>
                         <tr>
@@ -75,10 +75,13 @@
                                 <th scope="row">
                                     
                                    
-                                    <label class="form-control" name="codAluno[${idx}]">
+                                    <label class="form-control" name="nameAluno">
                                         <c:out value="${alunos.cod_aluno}" />
                                     </label>
-
+                                    <input type="hidden" name="alunoCod" value="<c:out value="${alunos.cod_aluno}" />">
+                                    <input type="hidden" name="turmaCod" value="<c:out value="${turmaR.turmaID}" />">
+                                    <input type="hidden" name="disciCod" value="<c:out value="${alunos.codDisciplina}" />">
+                                    
                                 </th>
 
 
@@ -98,7 +101,7 @@
                                 <!-- Nota 1 -->
                                 
                                     <td>
-                                        <input class="form-control"  id="nota1" type="text" name="nota1[${idx}]"
+                                        <input class="form-control"  id="nota1" type="text" name="nota1"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0"
                                                value="<c:out value="${alunos.nota1}" />">
                                     </td>
@@ -106,7 +109,7 @@
                                     <!-- Nota 2 -->
 
                                     <td>
-                                        <input class="form-control"  id="nota2" type="text" name="nota2[${idx}]"
+                                        <input class="form-control"  id="nota2" type="text" name="nota2"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0"
                                                value="<c:out value="${alunos.nota2}" />">
                                     </td>
@@ -114,7 +117,7 @@
                                     <!-- Nota 3 -->
 
                                     <td>
-                                        <input class="form-control"  id="nota3" type="text" name="nota3[${idx}]"
+                                        <input class="form-control"  id="nota3" type="text" name="nota3"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0"
                                                value="<c:out value="${alunos.nota3}" />">
                                     </td>
@@ -122,7 +125,7 @@
                                     <!-- Nota 4 -->
 
                                     <td>
-                                        <input class="form-control"  id="nota4" type="text" name="nota4[${idx}]"
+                                        <input class="form-control"  id="nota4" type="text" name="nota4"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0" 
                                                value="<c:out value="${alunos.nota4}" />">
                                     </td>
@@ -141,7 +144,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
     <script type="text/javascript">
-                                               $("#nota1, #nota2,#nota3,#nota4").mask("00.0");
+        $("#nota1, #nota2,#nota3,#nota4").mask("00.0");
     </script>
 </body>
 </html>

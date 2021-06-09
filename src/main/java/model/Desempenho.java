@@ -16,6 +16,7 @@ public class Desempenho {
     private int codDisciplina;
     private double media;
     private String status;
+    private int qteOco;
 
     public Desempenho() {
     }
@@ -38,7 +39,13 @@ public class Desempenho {
         this.media = media;
         this.status = status;
         this.codDisciplina = codDisciplina;
+        this.qteOco = qteOco;
     }
+
+    public Desempenho(int qteOco) {
+        this.qteOco = qteOco;
+    }
+    
 
     public String getDisciplina() {
         return disciplina;
@@ -119,4 +126,13 @@ public class Desempenho {
     public void setCodDisciplina(int codDisciplina) {
         this.codDisciplina = codDisciplina;
     }
+
+    public int getQteOco() {
+        return qteOco;
+    }
+
+    public void setQteOco(int qteOco) {
+        this.qteOco = qteOco;
+    }
+    
 }

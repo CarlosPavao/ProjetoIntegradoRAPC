@@ -74,6 +74,7 @@
                                             <c:out value="${lista.cod_aluno}"/>
                                         </label>
                                         <input type="hidden" name="alunoCod" value="<c:out value="${lista.cod_aluno}" />">
+                                        <input type="hidden" name="disciCod" value="<c:out value="${lista.codDisciplina}" />">
                                      
                                     </th>
 
