@@ -32,6 +32,7 @@ controller\ProfessorController.class
 dao\AdmDao.class
 controller\EditarAdm.class
 controller\ListarProfessor.class
+controller\AssociarAluno.class
 dao\DisciplinaDao.class
 model\Frequencia.class
 controller\FrequenciaController.class

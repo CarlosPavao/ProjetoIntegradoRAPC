@@ -119,7 +119,7 @@ public class TurmaDao {
     }
     
     public List<Turma> recuperaListaTurmaDifer(int turmaID) throws SQLException, IOException {
-        String sql = "select cod_turma,serie FROM turma WHERE cod_turma != ?";
+        String sql = "select * FROM turma WHERE cod_turma != ?";
         
         List<Turma> listaDeturma = new ArrayList<>();
         Connection conn = dbUtil.getConnection();
@@ -134,6 +134,7 @@ public class TurmaDao {
                 Turma turma = new Turma();
                 turma.setTurmaID(rst.getInt("cod_turma"));
                 turma.setSerie(rst.getString("serie"));
+                turma.setQte(rst.getInt("qte"));
                 listaDeturma.add(turma);
             }
             conn.close();
@@ -147,7 +148,7 @@ public class TurmaDao {
     }
     
     public Turma recuperaTurma(int turmaID) throws SQLException, IOException {
-        String sql = "select cod_turma,serie FROM turma WHERE cod_turma = ?";
+        String sql = "select * FROM turma WHERE cod_turma = ?";
         Turma turma = new Turma();
         Connection conn = dbUtil.getConnection();
 
@@ -160,6 +161,7 @@ public class TurmaDao {
             if (rst.next()) {
                 turma.setTurmaID(rst.getInt("cod_turma"));
                 turma.setSerie(rst.getString("serie"));
+                turma.setQte(rst.getInt("qte"));
             }
             conn.close();
             stmt.close();

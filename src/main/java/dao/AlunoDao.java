@@ -151,6 +151,30 @@ public class AlunoDao {
 
         return listaDeAluno;
     }
+    
+    public List<Aluno> alunoSemTurma() throws SQLException, IOException {
+        String sql = "SELECT * FROM aluno WHERE fk_turma IS null";
+        List<Aluno> listaDeAluno = new ArrayList<>();
+        try (
+                Connection conn = dbUtil.getConnection();
+                Statement stmt = conn.createStatement();
+                ResultSet rst = stmt.executeQuery(sql)) {
+            while (rst.next()) {
+                Aluno aluno = new Aluno();
+                aluno.setCodAluno(rst.getInt("cod_aluno"));
+                aluno.setNome(rst.getString("nome"));
+                listaDeAluno.add(aluno);
+            }
+            conn.close();
+            stmt.close();
+            rst.close();
+        } catch (SQLException e) {
+            System.err.println("Ocorreu um erro ao montar a lista de alunos sem "
+                    + "turma.");
+        }
+
+        return listaDeAluno;
+    }
 
     public Aluno getAlunoById(int codAluno) throws SQLException, IOException {
         String sql = "select * FROM aluno INNER JOIN endereco ON aluno.fk_endereco = endereco.id_endereco WHERE cod_aluno = ?";

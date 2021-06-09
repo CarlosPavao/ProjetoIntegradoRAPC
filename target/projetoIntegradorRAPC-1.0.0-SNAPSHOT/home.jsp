@@ -92,6 +92,7 @@
                             <h5 class="card-title">Registro</h5>
                             <a class="dropdown-item" href="notasController">Notas</a>
                             <a class="dropdown-item" href="registrarFrequencia">Presença</a>
+                            <a class="dropdown-item" href="associarAluno">Associar aluno</a>
                         </div>
                     </div>
                 </div>

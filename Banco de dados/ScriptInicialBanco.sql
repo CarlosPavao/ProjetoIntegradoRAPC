@@ -311,8 +311,19 @@ select * from aluno;
 select * from aluno;
 
 SELECT cod_aluno,aluno.nome,disciplinas.nome disciplina,
-nota1,nota2,nota3,nota4,sum(1) Qte  FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
+nota1,nota2,nota3,nota4 FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
+INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1 order by cod_aluno;
+
+SELECT sum(1) AS qteOco, aluno.nome FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
 INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1;
 
-SELECT sum(1) FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
-INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1
+
+SELECT cod_aluno,aluno.nome,disciplinas.nome disciplina,
+nota1,nota2,nota3,nota4, fk_disciplinaID FROM desempenho INNER JOIN
+aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno 
+INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1;
+
+SELECT cod_aluno,nome,nota1,nota2,nota3,nota4,fk_disciplinaID
+FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno WHERE fk_turma = 1 AND fk_disciplinaID = 1
+
+SELECT * FROM aluno WHERE fk_turma IS null;
