@@ -40,6 +40,23 @@ public class TurmaDao {
         }
         return listaTurma;
     }
+    public void associarAlunoTurma(int alunoID,int turmaID) throws SQLException, IOException {
+        String sql = "call novoAluno_turma(?,?)";
+        try (Connection conn = dbUtil.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, alunoID);
+            stmt.setInt(2, turmaID);
+            stmt.executeUpdate();
+
+            conn.close();
+            stmt.close();
+
+        } catch (SQLException e) {
+            System.err.println("Ocorreu um erro durante associação do aluno"
+                    + "com a turma: "+ alunoID + turmaID);
+        }
+    }
 
     public Turma SelecionarDesempenho(int turmaID) throws SQLException, IOException {
         String sql = "select * FROM turma WHERE cod_turma = ?";

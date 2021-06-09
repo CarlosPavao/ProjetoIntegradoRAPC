@@ -58,7 +58,7 @@
             </div>
             <div class="row">
                 <div class="col" id="space">
-                    <form name="frmNotas" action="${request.contextPath}selection">
+                    <form name="frmSerie" action="${request.contextPath}selection">
                     <label for="serie" id="textcolor" >Série:</label>
                     <select class="custom-select mr-sm-2" name="codTurma"
                         id="inputTurma">
@@ -72,8 +72,9 @@
                     </form>
                 </div>
                 <div class="row">
+                    
                     <div class="col" id="space">
-                        <form  name="frmNotas" action="${request.contextPath}selection" var="form1">
+                        
                         <label for="nome_aluno" id="textcolor">Aluno:</label>
                         <select class="custom-select mr-sm-2" name="aluno"
                         id="inputTurma">
@@ -83,23 +84,30 @@
                         <option value="${alunos.codAluno}" />${alunos.nome}</option>
                         </c:forEach>
                     </select>
-                        </form>
+                    <c:if test="${not empty erroAluno}">
+                        <span class="msg-erro"><c:out value="${erroAluno}" /></span>
+                    </c:if>
                     </div>
+                    
             </div>
             <div class="row">
                 <div class="col" id="space">
+                    
                     <table class="table table-striped table-hover" id="table-title">
+                        
                         <th id="textcolor"></th>
                         <th id="textcolor">Turma</th>
                         <th id="textcolor">Quantidade livre</th>
                         <th id="textcolor">Opções</th>
-                    <c:forEach items="${alunos}" var="alunos">  
+                        <form  name="frmPrincial" action="${request.contextPath}selection" var="form2">
+                    <c:forEach items="${alunos}" var="alunos">
                         <tr>
                             <td id="textcolor">${alunos.turmaID}</td>
                             <td id="textcolor">${alunos.Idlivre}</td>
                             <td id="textcolor"> <button type="button" class="btn btn-primary">Associar</button></td>
                         </tr> 
-                    </c:forEach>    
+                    </c:forEach>
+                        </form>
                     </table>    
                 </div>
             </div>

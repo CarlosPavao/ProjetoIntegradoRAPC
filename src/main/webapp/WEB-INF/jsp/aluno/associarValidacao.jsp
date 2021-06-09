@@ -15,6 +15,7 @@
     <script type="text/javascript" src="http://www.godtur.no/godtur/js/jquery-ui-1.8.18.custom.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="http://www.godtur.no/godtur/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/erro.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Associar aluno a turma</title>
     </head>
