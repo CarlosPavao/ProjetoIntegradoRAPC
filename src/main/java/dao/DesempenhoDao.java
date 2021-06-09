@@ -106,7 +106,7 @@ public class DesempenhoDao {
         }
         return listaDesempenho;
     }
-    public Desempenho qteAlunoTurma(int turmaID) throws SQLException, IOException {
+    public int qteAlunoTurma(int turmaID) throws SQLException, IOException {
         String sql = "SELECT sum(1) AS qteOco FROM desempenho INNER JOIN"
                 + " aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno "
                 + "INNER JOIN disciplinas ON desempenho.fk_disciplinaID ="
@@ -132,7 +132,7 @@ public class DesempenhoDao {
             System.err.println("Ocorreu um erro levantar a quantidade de"
                     + " alunos pela turma: " + turmaID );
         }
-        return obj;
+        return obj.getQteOco();
     }
     public List<Desempenho> desempenhoPorTurmaDisciplina(int turmaID, int disciplinaID) throws SQLException, IOException {
         String sql = "SELECT cod_aluno,nome,nota1,nota2,nota3,nota4,fk_disciplinaID "

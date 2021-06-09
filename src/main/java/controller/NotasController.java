@@ -210,7 +210,7 @@ public class NotasController extends HttpServlet {
                     request.setAttribute("Disciplinas", daoDisc.getAllDisciplinas());
                     request.setAttribute("listaTurma", daoDesp.desempenhoPorTurma(codTurma));
                     qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
-                    qteOcoAluno = daoDesp.qteAlunoTurma(codTurma).getQteOco();
+                    qteOcoAluno = daoDesp.qteAlunoTurma(codTurma);
 
                 } catch (SQLException ex) {
                     Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
