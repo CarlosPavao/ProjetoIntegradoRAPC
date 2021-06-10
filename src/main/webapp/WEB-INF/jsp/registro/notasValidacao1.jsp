@@ -71,6 +71,7 @@
             <h1>Registrar Notas</h1>
             
                 <form  name="frmNotas" action="${request.contextPath}selectionDisc" var="form1" id="turmaDisciplina">
+                    <div class="mesmaLinha">
                     <label for="Turma">Turma : </label>
                     <select class="custom-select mr-sm-11" name="codTurma"
                         id="inputTurma">
@@ -81,7 +82,7 @@
                         <option value="${turma.turmaID}" />${turma.serie}</option>
                         </c:forEach>
                     </select>
-                    <br>
+                    
                     
                     <!-- Select de Disciplina   -->
 
@@ -99,6 +100,7 @@
                     </c:if>
                         <br>
                         <button type="submit" value="form1">Pesquisar</button>
+                    </div>
                 </form>
                     
             
