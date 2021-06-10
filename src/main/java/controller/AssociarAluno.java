@@ -49,7 +49,7 @@ public class AssociarAluno extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.getRequestDispatcher("/WEB-INF/jsp/aluno/associar.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/aluno/Associar.jsp").forward(request, response);
         }
         if (action.equals("/selection")) {
             int codTurma;
