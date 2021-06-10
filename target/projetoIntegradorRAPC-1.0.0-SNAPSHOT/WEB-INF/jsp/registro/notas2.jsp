@@ -84,8 +84,7 @@
                         <option value="${turma.turmaID}" />${turma.serie}</option>
                         </c:forEach>
                     </select>
-                    <br>
-                    <!-- Select de Disciplina   -->
+                    
                     <label for="Disciplina">Disciplina : </label>
                     <select class="custom-select mr-sm-1" name="codDisciplina"
                         id="inputDisciplina">

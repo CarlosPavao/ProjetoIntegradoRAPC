@@ -166,7 +166,7 @@
                                 <!-- Situação -->
 
                                 <td style="color: white">
-                                    
+                                    <c:out value="${alunos.status}" />
                                 </td>
                         </c:forEach>
                             </tr> 

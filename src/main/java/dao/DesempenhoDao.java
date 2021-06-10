@@ -134,7 +134,10 @@ public class DesempenhoDao {
                 desempenho.setNota3(rst.getDouble("nota3"));
                 desempenho.setNota4(rst.getDouble("nota4"));
                 desempenho.setMedia(rst.getInt("media"));
-
+                if ( desempenho.getMedia() >=7)
+                    desempenho.setStatus("Aprovado");
+                else
+                    desempenho.setStatus("Reprovado");
                 listaDesempenho.add(desempenho);
             }
             conn.close();
@@ -174,7 +177,10 @@ public class DesempenhoDao {
                 desempenho.setNota3(rst.getDouble("nota3"));
                 desempenho.setNota4(rst.getDouble("nota4"));
                 desempenho.setMedia(rst.getInt("media"));
-
+                if ( desempenho.getMedia() >=7)
+                    desempenho.setStatus("Aprovado");
+                else
+                    desempenho.setStatus("Reprovado");
                 listaDesempenho.add(desempenho);
             }
             conn.close();

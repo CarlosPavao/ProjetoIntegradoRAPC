@@ -68,6 +68,7 @@
             <h1>Registrar Notas</h1>
             
                 <form  name="frmNotas" action="${request.contextPath}selectionDisc" var="form1" id="turmaDisciplina">
+                    <div class="mesmaLinha">
                     <label for="Turma">Turma</label>
                     <select class="custom-select mr-sm-11" name="codTurma"
                             id="inputTurma" >
@@ -81,7 +82,7 @@
                     <c:if test="${not empty erroTurma}">
                         <span class="msg-erro"><c:out value="${erroTurma}" /></span>
                     </c:if>
-                    <br>
+                    
 
                     <!-- Select de Disciplina   -->
 
@@ -99,6 +100,7 @@
                     </c:if>
                     <br/>
                     <button type="submit" value="form1">Pesquisar</button>
+                    <div>
                 </form>
             
                 <form method="POST"  name="frmNotas" action="${request.contextPath}notasController" var="form1" id="tabelaAluno">
