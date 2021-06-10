@@ -5,57 +5,68 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css"
-              href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
-        <script type="text/javascript" src="http://www.godtur.no/godtur/js/jquery-ui-1.8.18.custom.min.js"></script>
-        <title>Cadastro de Professor</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/erro.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link type="text/css"
+          href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/erro.css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/cadastro.css">
+    <title>Cadastro de Professor</title>
     </head>
     <body>
-        <nav class="navbar navbar-dark bg-dark  navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}"><img src="Imagens/logo.png" alt="some text" width=120 height=60>CyberSchool</a>
+ <nav class="navbar navbar-dark bg-dark  navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="${pageContext.request.contextPath}"><img src="Imagens/logo.png" alt="some text" width=120 height=60>CyberSchool</a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Listagem
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="alunoController?action=ListAlunos">Alunos Matriculados</a>
-                        <a class="dropdown-item" href="professorController?action=ListProfessor">Professores</a>
-                        <a class="dropdown-item" href="#">Turmas</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cadastro
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Cadastrar Aluno</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Cadastrar Professor</a>
-                        <a class="dropdown-item" href="#">Cadastrar Turma</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Algo mais aqui</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Desativado</a>
-                </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-                </form>
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cadastro
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Aluno</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Professor</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAdm">Adiministrativo</a>
+
             </div>
-        </nav>
-       <div class="container">
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Listagem
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/alunoController?action=ListAluno">Alunos Matriculados</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/professorController?action=ListProfessor">Professores</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/admController?action=ListAdm">Adiministrativo</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Registro
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
+                <a class="dropdown-item" href="#">Presença</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/associarAluno">Associar Aluno a turma</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Relátorios
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Presença</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Boletim</a>
+            </div>
+        </li>
+    </div>
+</nav>
+       <div class="container" id="cadastro">
            
         <h4>Dados do Professor</h4>
         <form method="POST" action='${request.contextPath}professorController' name="frmAddUser">
