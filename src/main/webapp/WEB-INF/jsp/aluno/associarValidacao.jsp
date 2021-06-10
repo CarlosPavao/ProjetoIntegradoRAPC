@@ -4,119 +4,121 @@
 <%@page buffer="8192kb" autoFlush="true" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/Associar.css" />
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <title>Associar aluno a turma</title>
-</head>
-<body>
-<nav class="navbar navbar-dark bg-dark  navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}"><img src="Imagens/logo.png" alt="some text" width=120 height=60>CyberSchool</a>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/Associar.css"/>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/erro.css"/>
+        <title>Associar aluno a turma</title>
+    </head>
+    <body>
+    <nav class="navbar navbar-dark bg-dark  navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}"><img src="Imagens/logo.png" alt="some text" width=120 height=60>CyberSchool</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cadastro
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Aluno</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Professor</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAdm">Adiministrativo</a>
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cadastro
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Aluno</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Professor</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAdm">Adiministrativo</a>
 
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Listagem
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/alunoController?action=ListAluno">Alunos Matriculados</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/professorController?action=ListProfessor">Professores</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/admController?action=ListAdm">Adiministrativo</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Registro
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
-                <a class="dropdown-item" href="#">Presença</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/associarAluno">Associar Aluno a turma</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Relátorios
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Presença</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Boletim</a>
-            </div>
-        </li>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Listagem
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/alunoController?action=ListAluno">Alunos Matriculados</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/professorController?action=ListProfessor">Professores</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/admController?action=ListAdm">Adiministrativo</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Registro
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
+                    <a class="dropdown-item" href="#">Presença</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/associarAluno">Associar Aluno a turma</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Relátorios
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Presença</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Boletim</a>
+                </div>
+            </li>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Associar aluno a turma</h1>
+        <form name="frmNotas" action="${request.contextPath}selection" id="turmaDisciplina">>
+            <label for="serie" id="textcolor" >Série:</label>
+            <select class="custom-select mr-sm-2" name="codTurma" id="inputTurma">
+                <!-- Carregando o select do Banco -->
+                <option value="" />Selecione</option>
+                <c:forEach items="${turmas}" var="turma">
+                    <option value="${turma.turmaID}" />${turma.serie}</option>
+                </c:forEach>
+            </select>
+            <c:if test="${not empty erroTurma}">
+                <span class="msg-erro"><c:out value="${erroTurma}" /></span>
+            </c:if>
+            <br>
+            <button type="submit" value="form1">Pesquisar</button>
+        </form>
     </div>
-</nav>
-
-<div class="container">
-    <h1>Associar aluno a turma</h1>
-    <form name="frmNotas" action="${request.contextPath}selection" id="turmaDisciplina">>
-        <label for="serie" id="textcolor" >Série:</label>
-        <select class="custom-select mr-sm-2" name="codTurma" id="inputTurma">
-            <!-- Carregando o select do Banco -->
-            <option value="" />Selecione</option>
-            <c:forEach items="${turmas}" var="turma">
-                <option value="${turma.turmaID}" />${turma.serie}</option>
-            </c:forEach>
-        </select>
-        <c:if test="${not empty erroTurma}">
-            <span class="msg-erro"><c:out value="${erroTurma}" /></span>
-        </c:if>
-        <br>
-        <button type="submit" value="form1">Pesquisar</button>
-    </form>
-</div>
-<div id="SelecaoAluno">
-    <form  name="frmNotas" action="${request.contextPath}selection" var="form1">
-        <label for="nome_aluno" id="textcolor">Aluno:</label>
-        <select class="custom-select mr-sm-2" name="aluno"
-                id="inputTurma">
-            <!-- Carregando o select do Banco -->
-            <option value="" />Selecione</option>
-            <c:forEach items="${aluno}" var="alunos">
-                <option value="${alunos.codAluno}" />${alunos.nome}</option>
-            </c:forEach>
-        </select>
-        <c:if test="${not empty erroAluno}">
-            <span class="msg-erro"><c:out value="${erroAluno}" /></span>
-        </c:if>
-    </form>
-</div>
-
-<div class="row">
-    <div class="col" id="tabelaTurma">
-        <table class="table table-striped table-hover" id="table-title">
-            <th id="textcolor"></th>
-            <th id="textcolor">Turma</th>
-            <th id="textcolor">Quantidade livre</th>
-            <th id="textcolor">Opções</th>
-            <c:forEach items="${alunos}" var="alunos">
-                <tr>
-                    <td id="textcolor">${alunos.turmaID}</td>
-                    <td id="textcolor">${alunos.Idlivre}</td>
-                    <td id="textcolor"> <button type="button" class="btn btn-primary">Associar</button></td>
-                </tr>
-            </c:forEach>
-        </table>
+    <div id="SelecaoAluno">
+        <form  name="frmNotas" action="${request.contextPath}selection" var="form1">
+            <label for="nome_aluno" id="textcolor">Aluno:</label>
+            <select class="custom-select mr-sm-2" name="aluno"
+                    id="inputTurma">
+                <!-- Carregando o select do Banco -->
+                <option value="" />Selecione</option>
+                <c:forEach items="${aluno}" var="alunos">
+                    <option value="${alunos.codAluno}" />${alunos.nome}</option>
+                </c:forEach>
+            </select>
+            <c:if test="${not empty erroAluno}">
+                <span class="msg-erro"><c:out value="${erroAluno}" /></span>
+            </c:if>
+        </form>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col" id="tabelaTurma">
+            <table class="table table-striped table-hover" id="table-title">
+                <th id="textcolor"></th>
+                <th id="textcolor">Turma</th>
+                <th id="textcolor">Quantidade livre</th>
+                <th id="textcolor">Opções</th>
+                    <c:forEach items="${alunos}" var="alunos">
+                    <tr>
+                        <td id="textcolor">${alunos.turmaID}</td>
+                        <td id="textcolor">${alunos.Idlivre}</td>
+                        <td id="textcolor"> <button type="button" class="btn btn-primary">Associar</button></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+    </div>
 </div>
 </div>
 <footer class="footer navbar-fixed-bottom" id="myFooter">

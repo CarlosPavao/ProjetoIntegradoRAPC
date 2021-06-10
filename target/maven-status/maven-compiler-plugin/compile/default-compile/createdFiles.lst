@@ -6,7 +6,6 @@ controller\EditarAluno.class
 model\Disciplina.class
 util\DbUtil.class
 controller\ListarNota.class
-controller\Teste.class
 model\Professor.class
 controller\CadastroAdm.class
 dao\DesempenhoDao.class

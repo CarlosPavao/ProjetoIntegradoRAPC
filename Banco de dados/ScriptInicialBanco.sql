@@ -355,3 +355,5 @@ alter table desempenho modify column nota4 decimal (10,2);
 
 describe desempenho;
 */
+select * from ministrante;
+

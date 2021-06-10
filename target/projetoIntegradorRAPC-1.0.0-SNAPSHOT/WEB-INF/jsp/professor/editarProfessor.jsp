@@ -34,52 +34,65 @@
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Listagem
+                    Cadastro
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="professorController?action=ListAlunos">Alunos Matriculados</a>
-                    <a class="dropdown-item" href="professorController?action=ListProfessor">Professores</a>
-                    <a class="dropdown-item" href="#">Turmas</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Aluno</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Professor</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAdm">Adiministrativo</a>
+
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Cadastro
+                    Listagem
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Cadastrar Aluno</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Cadastrar Professor</a>
-                    <a class="dropdown-item" href="#">Cadastrar Turma</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Algo mais aqui</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/alunoController?action=ListAluno">Alunos Matriculados</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/professorController?action=ListProfessor">Professores</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/admController?action=ListAdm">Adiministrativo</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Desativado</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Registro
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
+                    <a class="dropdown-item" href="#">Presença</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/associarAluno">Associar Aluno a turma</a>
+                </div>
             </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Relátorios
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Presença</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Boletim</a>
+                </div>
+            </li>
+
+
         </div>
     </nav>
     <div class="container">
         <h4>Dados do Professor</h4>
         <form method="POST" action='${request.contextPath}professorController' name="frmAddUser">
             <div class="form-row">
-                    <div class="form-group col-md-1">
-                        <label>Matrícula</label>
-                        <input type="text" class="form-control" readonly="readonly" name="codProfessor"
-                               value="<c:out value="${professor.codProfessor}" />" >
-                    </div>
-                    <div class="form-group col-md-2" id="matricula">
+                <div class="form-group col-md-1">
+                    <label>Matrícula</label>
+                    <input type="text" class="form-control" readonly="readonly" name="codProfessor"
+                           value="<c:out value="${professor.codProfessor}" />" >
+                </div>
+                <div class="form-group col-md-2" id="matricula">
                     <label for="inputPerfil">Perfil</label><br/> 
                     <select class="custom-select mr-sm-2" name="perfil"
-                        id="inputPerfil" value="<c:out value="${professor.perfil}" />"> 
+                            id="inputPerfil" value="<c:out value="${professor.perfil}" />"> 
                         <option value="Professor">Professor</option>
                     </select>
-                    </div>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-3">   
@@ -92,7 +105,7 @@
                     <!-- Gênero -->
                     <label for="inputGenero">Gênero</label><br/> 
                     <select class="custom-select mr-sm-2" name="sexo"
-                        id="inputGenero" value="<c:out value="${professor.sexo}" />"> 
+                            id="inputGenero" value="<c:out value="${professor.sexo}" />"> 
                         <option value="${professor.sexo}">${professor.sexo}</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Feminino">Feminino</option>
@@ -143,7 +156,7 @@
                 <div class="form-group col-md-3">   
                     <label for="inputDisciplina1">Disciplina 1</label><br/> 
                     <select class="custom-select mr-sm-2" name="disciplina1"
-                        id="inputDisciplina1"> 
+                            id="inputDisciplina1"> 
                         <option value="${professor.fk_disciplinaID}">${professor.fk_disciplinaID}</option>
                         <option value="Português">Português</option>
                         <option value="Matemática">Matemática</option>
@@ -157,7 +170,7 @@
                 <div class="form-group col-md-2">
                     <label for="inputdisciplina2">Disciplina 2</label><br/> 
                     <select class="custom-select mr-sm-2" name="disciplina2"
-                        id="inputdisciplina2"> 
+                            id="inputdisciplina2"> 
                         <option value="${professor.fk_disciplina2ID}">${professor.fk_disciplina2ID}</option>
                         <option value="Português">Português</option>
                         <option value="Matemática">Matemática</option>
@@ -202,7 +215,7 @@
                            name="complemento" value="<c:out value="${professor.complemento}" />">
                 </div>
             </div>
-                <div class="form-row">
+            <div class="form-row">
                 <div class="form-group col-md-2">
                     <label for="inputBairro">Bairro</label>
                     <input class="form-control" id="inputBairro" type="text" 
@@ -215,16 +228,20 @@
                            placeholder="XXXXX-XXX"
                            value="<c:out value="${professor.cep}" />" >
                 </div>
-                </div>
             </div>
-            <div class="container">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input class="btn btn-primary btn-lg active" role="button" aria-pressed="true" type="submit" value="Enviar" />     
-                    </div>
-                </div>
-            </div>
-        </form>
     </div>
+    <div class="container">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input class="btn btn-primary btn-lg active" role="button" aria-pressed="true" type="submit" value="Enviar" />     
+            </div>
+        </div>
+    </div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>

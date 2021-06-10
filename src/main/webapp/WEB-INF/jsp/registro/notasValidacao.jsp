@@ -39,9 +39,9 @@
                         Listagem
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="alunoController?action=ListAlunos">Alunos Matriculados</a>
-                        <a class="dropdown-item" href="admController?action=ListProfessor">Professores</a>
-                        <a class="dropdown-item" href="admController?action=ListAdm">Adiministrativo</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/alunoController?action=ListAluno">Alunos Matriculados</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/professorController?action=ListProfessor">Professores</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/admController?action=ListAdm">Adiministrativo</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -50,7 +50,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Presença</a>
+                        <a class="dropdown-item" href="#">Presença</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/associarAluno">Associar Aluno a turma</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -58,12 +59,13 @@
                         Relátorios
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="alunoController?action=ListAlunos">Notas</a>
-                        <a class="dropdown-item" href="admController?action=ListProfessor">Presença</a>
-                        <a class="dropdown-item" href="admController?action=ListAdm">Boletim</a>
+                        <a class="dropdown-item" href="#">Presença</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Boletim</a>
                     </div>
                 </li>
-             </div>
+
+
+            </div>
         </nav>
         <div class="container">
             <h1>Registrar Notas</h1>

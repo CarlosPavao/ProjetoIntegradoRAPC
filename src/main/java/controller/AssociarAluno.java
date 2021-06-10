@@ -106,14 +106,39 @@ public class AssociarAluno extends HttpServlet {
 
         boolean temErro = false;
         int codTurma = Integer.parseInt(request.getParameter("turmaCod"));
-        int codAluno = Integer.parseInt(request.getParameter("aluno"));;
+        int codAluno;
         int qtdeTurma = 0;
+
+        if (request.getParameter("aluno") == null
+                || request.getParameter("aluno").equals("")) {
+            codAluno = 0;
+            temErro = true;
+            request.setAttribute("erroAluno", "Selecione primeiro a série!");
+            try {
+                request.setAttribute("turmaD", daoT.recuperaListaTurmaDifer(codTurma));
+                request.setAttribute("turmaR", daoT.recuperaTurma(codTurma));
+                request.setAttribute("aluno", daoA.alunoSemTurma());
+            } catch (SQLException ex) {
+                Logger.getLogger(AssociarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            request.getRequestDispatcher("/WEB-INF/jsp/aluno/associar2.jsp").forward(request, response);
+
+        } else {
+            codAluno = Integer.parseInt(request.getParameter("aluno"));
+        }
+        request.getRequestDispatcher("/WEB-INF/jsp/aluno/associar2.jsp").forward(request, response);
+        
+        
+        
+        
         try {
             qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
         } catch (SQLException ex) {
             Logger.getLogger(AssociarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ;
+        
+        
+
         if (qtdeTurma < 1) {
             temErro = true;
             request.setAttribute("erroTurma", "Esta série está lotada! "

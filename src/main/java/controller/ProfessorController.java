@@ -82,6 +82,9 @@ public class ProfessorController extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(ProfessorController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/professor/editarProfessor.jsp");
+            dispatcher.forward(request, response);
+            
         } else if (action.equalsIgnoreCase("ListProfessor")) {
             forward = LIST_ALUNO;
             try {
