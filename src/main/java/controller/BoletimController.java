@@ -78,9 +78,6 @@ public class BoletimController extends HttpServlet {
             }
             if (request.getParameter("codDisciplina").equals("")) {
                 codDisciplina = 0;
-                temErro = true;
-                request.setAttribute("erroDisciplina", "Disciplina não informada.");
-
             } else {
                 codDisciplina = Integer.parseInt(request.getParameter("codDisciplina"));
             }

@@ -222,6 +222,36 @@ public class DesempenhoDao {
         }
         return obj.getQteOco();
     }
+    public int qteAlunoTurmaDisciplina(int turmaID, int disciplinaID) throws SQLException, IOException {
+        String sql = "SELECT sum(1) AS qteOco FROM desempenho INNER JOIN"
+                + " aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno "
+                + "INNER JOIN disciplinas ON desempenho.fk_disciplinaID ="
+                + " disciplinas.disciplinaID "
+                + "WHERE fk_turma = ? AND fk_disciplinaID = ?";
+        
+        Desempenho obj = new Desempenho(turmaID);
+        Connection conn = dbUtil.getConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, turmaID);
+            stmt.setInt(2, disciplinaID);
+            //Execultando o comando
+            ResultSet rst = stmt.executeQuery();
+            
+            if (rst.next()){
+                obj.setQteOco(rst.getInt("qteOco"));
+
+            }
+            conn.close();
+            stmt.close();
+            rst.close();
+        } catch (SQLException e) {
+            System.err.println("Ocorreu um erro levantar a quantidade de"
+                    + " alunos pela turma: " + turmaID );
+        }
+        return obj.getQteOco();
+    }
     
     public List<Desempenho> desempenhoPorTurmaDisciplina(int turmaID, int disciplinaID) throws SQLException, IOException {
         String sql = "SELECT cod_aluno,nome,nota1,nota2,nota3,nota4,fk_disciplinaID "

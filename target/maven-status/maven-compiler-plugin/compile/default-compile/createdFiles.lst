@@ -27,6 +27,7 @@ controller\EditarProfessor.class
 controller\AlunoController.class
 dao\ProfessorDao.class
 controller\ListarAluno.class
+controller\PresencaController.class
 controller\RedirectProfessor.class
 controller\AdmController.class
 controller\ProfessorController.class

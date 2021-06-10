@@ -77,8 +77,9 @@
                         id="inputTurma">
 
                         <!-- Carregando o select do Banco -->
-                        <option value="" />Selecione</option>
-                        <c:forEach items="${turmas}" var="turma">
+                        <option value="<c:out value="${turmaR.turmaID}" />" />
+                        <c:out value="${turmaR.serie}" /></option>
+                        <c:forEach items="${turmaD}" var="turma">
                         <option value="${turma.turmaID}" />${turma.serie}</option>
                         </c:forEach>
                     </select>
@@ -110,6 +111,7 @@
                         <tr>
                             <th style="color: white" scope="col">Matrícula</th>
                             <th style="color: white" scope="col">Nome</th>
+                            <th style="color: white" scope="col">Disciplina</th>
                             <th style="color: white" scope="col">Nota 1</th>
                             <th style="color: white"scope="col">Nota 2</th>
                             <th style="color: white"scope="col">Nota 3</th>

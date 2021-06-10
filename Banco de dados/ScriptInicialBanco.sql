@@ -95,10 +95,10 @@ CREATE TABLE Grade (
 
 CREATE TABLE Desempenho (
 	desempenhoID integer not null auto_increment PRIMARY KEY,
-    nota1 decimal,
-    nota2 decimal,
-    nota3 decimal,
-    nota4 decimal,
+    nota1 decimal(10,2),
+    nota2 decimal(10,2),
+    nota3 decimal(10,2),
+    nota4 decimal(10,2),
     fk_disciplinaID int,
     fk_cod_aluno int,
     FOREIGN KEY (fk_disciplinaID) REFERENCES Disciplinas (disciplinaID),
@@ -286,37 +286,21 @@ select * from aluno;
 
 select * from turma;
 */
-
+/*
 use projetorapc;
 
 select * from disciplina;
 update desempenho set nota1 = 0, nota2 = 0, nota3 = 0, nota4=0 where fk_disciplinaID = 1;
 
-select * from desempenho;
-
-select * from frequencia;
-
-date now();
-
 UPDATE desempenho SET nota1 = 1 WHERE fk_disciplinaID = 1 AND fk_cod_aluno = 1;
-
-select * from turma;
-
-select * from turma;
-
-update turma set qte = 18 where cod_turma =2;
-
-select * from aluno;
-
-select * from aluno;
 
 SELECT cod_aluno,aluno.nome,disciplinas.nome disciplina,
 nota1,nota2,nota3,nota4 FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
 INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1 order by cod_aluno;
 
-SELECT sum(1) AS qteOco, aluno.nome FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
-INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1;
-
+SELECT aluno.nome,sum(1) AS qteOco FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
+INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1
+group by aluno.nome;
 
 SELECT cod_aluno,aluno.nome,disciplinas.nome disciplina,
 nota1,nota2,nota3,nota4, fk_disciplinaID FROM desempenho INNER JOIN
@@ -336,6 +320,27 @@ select * from desempenho;
 
 select sum(nota1+nota2+nota3+nota4)/4 media from desempenho;
 
+select * from aluno where fk_turma = 1;
 
-select nota1,nota2,nota3,nota4,fk_disciplinaID,fk_cod_aluno, avg(nota1+nota2+nota3+nota4) media from desempenho
+select nota1,nota2,nota3,nota4, avg(nota1+nota2+nota3+nota4)/4 média ,fk_disciplinaID,fk_cod_aluno  from desempenho
 group by nota1,nota2,nota3,nota4,fk_disciplinaID,fk_cod_aluno;
+
+SELECT cod_aluno,aluno.nome,
+nota1,nota2,nota3,nota4,sum(nota1+nota2+nota3+nota4)/4 média FROM desempenho INNER JOIN
+aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno INNER JOIN disciplinas ON desempenho.fk_disciplinaID =
+disciplinas.disciplinaID WHERE fk_turma = 1 AND fk_disciplinaID = 1
+group by cod_aluno,aluno.nome,nota1,nota2,nota3,nota4
+
+
+SELECT sum(1) AS qteOco FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
+INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1 AND fk_disciplinaID = 1;
+
+SELECT * FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno
+INNER JOIN disciplinas ON desempenho.fk_disciplinaID = disciplinas.disciplinaID WHERE fk_turma = 1 AND fk_disciplinaID = 1;
+
+select * from desempenho;
+
+alter table desempenho modify column nota4 decimal (10,2);
+
+describe desempenho;
+*/

@@ -8,10 +8,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css"
               href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
-        <script type="text/javascript" src="http://www.godtur.no/godtur/js/jquery-ui-1.8.18.custom.min.js"></script>
+        <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />
         <title>Registrar Nota</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="CSS/Notas.css">
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/erro.css" />
     </head>
     <body>
@@ -84,15 +85,18 @@
                         <option value="${turma.turmaID}" />${turma.serie}</option>
                         </c:forEach>
                     </select>            
-                    
+                    <c:if test="${not empty erroTurma}">
+                        <span class="msg-erro"><c:out value="${erroTurma}" /></span>
+                    </c:if>
                     <!-- Select de Disciplina   -->
 
                     <label for="Disciplina">Disciplina : </label>
                     <select class="custom-select mr-sm-11" name="codDisciplina"
                         id="inputDisciplina">
                         <!-- Carregando o select do Banco -->
-                        <option value="" />Selecione</option>
-                        <c:forEach items="${Disciplinas}" var="d">
+                        <option value="<c:out value="${disciplinaR.disciplinaID}" />" />
+                        <c:out value="${disciplinaR.nome}" /></option>
+                        <c:forEach items="${discplinaD}" var="d">
                         <option value="${d.disciplinaID}" />${d.nome}</option>
                         </c:forEach>
                     </select>
@@ -115,14 +119,14 @@
                     </thead>
                     <tbody>
                         <!<!-- atributo Alunos vem da classe AlunoControlles na linha 65  -->
-                        <c:forEach items="${alunos}" var="alunos" var="idx">
+                        <c:forEach items="${alunos}" var="alunos">
 
                             <tr>
 
                                 <!-- Código do Aluno -->
                                 <th scope="row">
 
-                                    <label class="form-control" name="codAluno[${idx}]">
+                                    <label class="form-control" name="codAluno">
                                         <c:out value="${alunos.codAluno}" />
                                     </label>
 
@@ -141,28 +145,28 @@
                                 <!-- Nota 1 -->
 
                                 <td>
-                                    <input class="form-control"  id="nota1" type="text" name="nota1[${idx}]"
+                                    <input class="form-control"  id="nota1" type="text" name="nota1"
                                            onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                 </td>
 
                                 <!-- Nota 2 -->
 
                                 <td>
-                                    <input class="form-control"  id="nota2" type="text" name="nota2[${idx}]"
+                                    <input class="form-control"  id="nota2" type="text" name="nota2"
                                            onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                 </td>
 
                                 <!-- Nota 3 -->
 
                                 <td>
-                                    <input class="form-control"  id="nota3" type="text" name="nota3[${idx}]"
+                                    <input class="form-control"  id="nota3" type="text" name="nota3"
                                            onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                 </td>
 
                                 <!-- Nota 4 -->
 
                                 <td>
-                                    <input class="form-control"  id="nota4" type="text" name="nota4[${idx}]"
+                                    <input class="form-control"  id="nota4" type="text" name="nota4"
                                            onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                 </td>
                             </tr>
@@ -171,13 +175,32 @@
                 </table>
                 <button type="submit">Enviar</button>
             </form>
-        </form>
-
     </div>
+    <footer class="footer navbar-fixed-bottom" id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="Imagens/logo.png" alt="some text">
+                </div>
+                <div class="col">
+                    <h2>Desenvolvido por RAPC</h2>
+                </div>
+                <div class="col">
+                    <div class="social-networks">
+                        <a href="https://github.com/CarlosPavao/ProjetoIntegradoRAPC" class="instagram"><i class="fa fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-    <script type="text/javascript">
-                                               $("#nota1, #nota2,#nota3,#nota4").mask("00.0");
-    </script>
+    <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+    <script src="http://www.godtur.no/godtur/js/jquery-ui-1.8.18.custom.min.js"></script>
 </body>
 </html>
