@@ -53,9 +53,7 @@ private final DbUtil dbUtil = new DbUtil();
         }
     }
     public void deletarProfessor(int professorID) throws SQLException, IOException {
-        String sql = "DELETE professor,endereco FROM professor INNER JOIN endereco"
-                + " ON professor.fk_endereco = endereco.id_endereco"
-                + " WHERE cod_professor = ?";
+        String sql = "call excluiProfessor(?)";
         try(Connection conn = dbUtil.getConnection();
                      PreparedStatement stmt = conn.prepareStatement(sql)) {
 

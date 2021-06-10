@@ -195,6 +195,7 @@ rua varchar(30),numero integer,complemento varchar(30),bairro varchar(30),cep va
     insert into ministrante(fk_cod_professor, fk_disciplinaID)values(@@identity, fk_disciplina2ID);
     end $$
     
+    
 /*   Exemplo de criação do Professor com a procedure
 call novo_professor ('Fulano','Masculino','1988/08/14','11.111.111-1','111.1111.111-11','1196291-0587','fulano@msn.com','12345678','12345678','Professor','Avenida Circular', 113,'Apto52 Bloco6','Jardim Raposo','05547-025',5,2);
 
@@ -249,8 +250,18 @@ IN p_cod_aluno integer, IN p_cod_turma integer)
     insert into desempenho (nota1,nota2,nota3,nota4,fk_disciplinaID,fk_cod_aluno)values(0,0,0,0,7,p_cod_aluno);
     end $$
     
-
-
+delimiter $$   
+create procedure excluiProfessor (
+IN p_cod_professor integer)
+    begin
+	delete from ministrante WHERE fk_cod_professor = p_cod_professor; 
+    delete from professor where cod_professor = p_cod_professor;
+    end $$
+    
+  /* Exemplo de uso
+  call excluiProfessor(3);
+    
+  */
     /*Exemplo de uso da procedure
     call novoAluno_turma (4,2);
     

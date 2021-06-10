@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
-import dao.AlunoDao;
 import dao.ProfessorDao;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Aluno;
 import model.Professor;
 
 /**
@@ -30,7 +23,6 @@ public class RedirectProfessor extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
     private static final String INSERT_OR_EDIT = "/cadastroProfessor";
-    private static final String LIST_ALUNO = "/listarProfessor";
     private final ProfessorDao dao;
 
     public RedirectProfessor() {
@@ -41,7 +33,7 @@ public class RedirectProfessor extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession sessao = request.getSession();
-        int numero;
+
         int codProfessor = (int) sessao.getAttribute("codProfessor");
         Professor professor = new Professor();
         
@@ -54,7 +46,7 @@ public class RedirectProfessor extends HttpServlet {
             if (codProfessor == 0) {
                 try {
                     dao.adicionarProfessor(dados);
-                    RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/jsp/aluno/alunoSucesso.jsp");
+                    RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/jsp/professor/ProfessorSucesso.jsp");
                     view.forward(request, response);
                 } catch (SQLException ex) {
                     Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,22 +55,12 @@ public class RedirectProfessor extends HttpServlet {
                 professor.setCodProfessor(codProfessor);
                 try {
                     dao.updateProfessor(dados);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/aluno/alunoSucessoEd.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/professor/ProfessorSucessoEd.jsp");
                     dispatcher.forward(request, response);
                 } catch (SQLException ex) {
                     Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            RequestDispatcher view = request.getRequestDispatcher(LIST_ALUNO);
-            
-            try {
-                request.setAttribute("alunos", dao.getAllProfessor());
-            } catch (SQLException ex) {
-                Logger.getLogger(AlunoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/aluno/alunoErro.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }
