@@ -46,6 +46,8 @@ public class NotasController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         boolean temErro = false;
         String forward = "";
@@ -251,14 +253,7 @@ public class NotasController extends HttpServlet {
                 request.setAttribute("codDisciplina", codDisciplina);
                 request.getRequestDispatcher("/WEB-INF/jsp/registro/notas2.jsp").forward(request, response);
             }
-        /*
-        try {
-            qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
-            qteOcoAluno = daoDesp.qteAlunoTurma(codTurma).getQteOco();
-        } catch (SQLException | IOException throwables) {
-            throwables.printStackTrace();
-        }
-        */
+
         if (qtdeTurma == 0) {
             qtdeTurma = 20;
         } else if(codDisciplina != 0 && qtdeTurma !=0)  {
