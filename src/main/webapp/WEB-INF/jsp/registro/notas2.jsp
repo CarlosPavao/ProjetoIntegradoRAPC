@@ -137,7 +137,7 @@
 
                                     <!-- Nome do Aluno -->
 
-                                    <td>
+                                    <td style="color: white;">
 
                                         <c:out value="${lista.nome}" />
 
