@@ -35,9 +35,9 @@
                     Listagem
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/alunoController?action=ListAluno">Alunos Matriculados</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/professorController?action=ListProfessor">Professores</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/admController?action=ListAdm">Adiministrativo</a>
+                    <a class="dropdown-item" href="alunoController?action=ListAlunos">Alunos Matriculados</a>
+                    <a class="dropdown-item" href="admController?action=ListProfessor">Professores</a>
+                    <a class="dropdown-item" href="admController?action=ListAdm">Adiministrativo</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -46,8 +46,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
-                    <a class="dropdown-item" href="#">Presença</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/associarAluno">Associar Aluno a turma</a>
+                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Presença</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -77,7 +76,7 @@
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Cadastrar Aluno</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Cadastrar Professor</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAdm">Cadastrar Adm</a>
-
+                        <a class="dropdown-item" href="#">Presença</a>
                     </div>
                 </div>
             </div>
@@ -100,7 +99,8 @@
                         <a class="dropdown-item" href="alunoController?action=ListAluno">Aluno Matriculados</a>
                         <a class="dropdown-item" href="professorController?action=ListProfessor">Professores</a>
                         <a class="dropdown-item" href="admController?action=ListAdm">Lista Adm's"</a>
-                        <a class="dropdown-item" href="#">Boletim</a>
+                        <a class="dropdown-item" href="#">Presença</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Notas</a>
                     </div>
                 </div>
             </div>

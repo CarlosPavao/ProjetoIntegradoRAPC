@@ -327,3 +327,15 @@ SELECT cod_aluno,nome,nota1,nota2,nota3,nota4,fk_disciplinaID
 FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno WHERE fk_turma = 1 AND fk_disciplinaID = 1
 
 SELECT * FROM aluno WHERE fk_turma IS null;
+
+update turma set qte = 0 where cod_turma = 1;
+
+select * from turma;
+
+select * from desempenho;
+
+select sum(nota1+nota2+nota3+nota4)/4 media from desempenho;
+
+
+select nota1,nota2,nota3,nota4,fk_disciplinaID,fk_cod_aluno, avg(nota1+nota2+nota3+nota4) media from desempenho
+group by nota1,nota2,nota3,nota4,fk_disciplinaID,fk_cod_aluno;

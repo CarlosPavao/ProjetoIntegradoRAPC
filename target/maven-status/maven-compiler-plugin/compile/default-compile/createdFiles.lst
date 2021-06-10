@@ -18,6 +18,7 @@ controller\CadastroAluno.class
 controller\CadastroProfessor.class
 dao\AlunoDao.class
 model\Aluno.class
+controller\BoletimController.class
 model\Adm.class
 controller\ListarAdm.class
 model\Turma.class

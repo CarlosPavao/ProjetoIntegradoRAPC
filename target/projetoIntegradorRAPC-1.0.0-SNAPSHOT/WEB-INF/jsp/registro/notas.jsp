@@ -13,66 +13,66 @@
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     </head>
     <body>
-    <nav class="navbar navbar-dark bg-dark  navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="${pageContext.request.contextPath}"><img src="Imagens/logo.png" alt="some text" width=120 height=60>CyberSchool</a>
+        <nav class="navbar navbar-dark bg-dark  navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="${pageContext.request.contextPath}"><img src="Imagens/logo.png" alt="some text" width=120 height=60>CyberSchool</a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Cadastro
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Aluno</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Professor</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAdm">Adiministrativo</a>
+            <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cadastro
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAluno">Aluno</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Professor</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroAdm">Adiministrativo</a>
 
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Listagem
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="alunoController?action=ListAlunos">Alunos Matriculados</a>
-                    <a class="dropdown-item" href="admController?action=ListProfessor">Professores</a>
-                    <a class="dropdown-item" href="admController?action=ListAdm">Adiministrativo</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Registro
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
-                    <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Presença</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Relátorios
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="alunoController?action=ListAlunos">Notas</a>
-                    <a class="dropdown-item" href="admController?action=ListProfessor">Presença</a>
-                    <a class="dropdown-item" href="admController?action=ListAdm">Boletim</a>
-                </div>
-            </li>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Listagem
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="alunoController?action=ListAlunos">Alunos Matriculados</a>
+                        <a class="dropdown-item" href="admController?action=ListProfessor">Professores</a>
+                        <a class="dropdown-item" href="admController?action=ListAdm">Adiministrativo</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Registro
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Presença</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Relátorios
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="alunoController?action=ListAlunos">Notas</a>
+                        <a class="dropdown-item" href="admController?action=ListProfessor">Presença</a>
+                        <a class="dropdown-item" href="admController?action=ListAdm">Boletim</a>
+                    </div>
+                </li>
 
 
-        </div>
-    </nav>
+            </div>
+        </nav>
 
-    <div class="container">
-            
+        <div class="container">
             <h1>Registrar Notas</h1>
             
             <form  name="frmNotas" action="${request.contextPath}selectionDisc" var="form1" id="turmaDisciplina">
-                <label for="Turma">Turma : </label>
+                <div class="mesmaLinha">
+                    <label for="Turma">Turma : </label>
                     <select class="custom-select mr-sm-11" name="codTurma"
                         id="inputTurma">
 
@@ -82,8 +82,8 @@
                         <option value="${turma.turmaID}" />${turma.serie}</option>
                         </c:forEach>
                     </select>
-                    <br>
-                    
+
+
                     <!-- Select de Disciplina   -->
 
                     <label for="Disciplina">Disciplina : </label>
@@ -95,20 +95,22 @@
                         <option value="${d.disciplinaID}" />${d.nome}</option>
                         </c:forEach>
                     </select>
+
                     <br>
                     <button type="submit" value="form1">Pesquisar</button>
+                </div>
             </form>
             
             <form method="POST"  name="frmNotas" action="${request.contextPath}notasController" var="form1" id="tabelaAluno">
                 <table border="1">
-                    <thead class="titleteste">
+                    <thead>
                         <tr>
-                            <th scope="col">Matrícula</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Nota 1</th>
-                            <th scope="col">Nota 2</th>
-                            <th scope="col">Nota 3</th>
-                            <th scope="col">Nota 4</th>
+                            <th style="color: white" scope="col">Matrícula</th>
+                            <th style="color: white" scope="col">Nome</th>
+                            <th style="color: white" scope="col">Nota 1</th>
+                            <th style="color: white" scope="col">Nota 2</th>
+                            <th style="color: white" scope="col">Nota 3</th>
+                            <th style="color: white" scope="col">Nota 4</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,7 +120,7 @@
                                 <tr>
 
                                     <!-- Código do Aluno -->
-                                    <th scope="row">
+                                    <th style="color: white" scope="row">
 
                                         <label class="form-control" name="codAluno[${idx}]">
                                             <c:out value="${alunos.cod_aluno}" />
@@ -131,7 +133,7 @@
 
                                     <!-- Nome do Aluno -->
 
-                                    <td>
+                                    <td style="color: white">
 
                                         <c:out value="${alunos.nome}" />
 
@@ -139,28 +141,28 @@
                             
                                     <!-- Nota 1 -->
 
-                                    <td>
+                                    <td style="color: white">
                                         <input class="form-control"  id="nota1" type="text" name="nota1[${idx}]"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                     </td>
 
                                     <!-- Nota 2 -->
 
-                                    <td>
+                                    <td style="color: white">
                                         <input class="form-control"  id="nota2" type="text" name="nota2[${idx}]"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                     </td>
 
                                     <!-- Nota 3 -->
 
-                                    <td>
+                                    <td style="color: white">
                                         <input class="form-control"  id="nota3" type="text" name="nota3[${idx}]"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                     </td>
 
                                     <!-- Nota 4 -->
 
-                                    <td>
+                                    <td style="color: white">
                                         <input class="form-control"  id="nota4" type="text" name="nota4[${idx}]"
                                                onkeypress="$(this).mask('00.0')"placeholder="00.0">
                                     </td>
@@ -171,8 +173,9 @@
                 <button type="submit" value="principal">Enviar</button>
             </form>
         </div>
-        <br>
-        <footer id="myFooter">
+        
+                
+        <footer class="footer navbar-fixed-bottom" id="myFooter">
             <div class="container">
                 <div class="row">
                     <div class="col">

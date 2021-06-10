@@ -100,7 +100,7 @@
                         <a class="dropdown-item" href="professorController?action=ListProfessor">Professores</a>
                         <a class="dropdown-item" href="admController?action=ListAdm">Lista Adm's"</a>
                         <a class="dropdown-item" href="#">Presença</a>
-                        <a class="dropdown-item" href="#">Notas</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Notas</a>
                     </div>
                 </div>
             </div>

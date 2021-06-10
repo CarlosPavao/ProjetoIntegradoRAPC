@@ -72,30 +72,31 @@
             <h1>Registrar Notas</h1>
 
             <form  name="frmNotas" action="${request.contextPath}selectionDisc" var="form1" id="turmaDisciplina">
-                <label for="Turma">Turma : </label>
-                <select class="custom-select mr-sm-11" name="codTurma"
-                    id="inputTurma" >
+                <div class="mesmaLinha">
+                    <label for="Turma">Turma : </label>
+                    <select class="custom-select mr-sm-11" name="codTurma"
+                        id="inputTurma" >
 
-                    <!-- Carregando o select do Banco -->
-                    <option value="<c:out value="${turmaR.turmaID}" />" />
-                    <c:out value="${turmaR.serie}" /></option>
-                    <c:forEach items="${turmaD}" var="turma">
-                    <option value="${turma.turmaID}" />${turma.serie}</option>
-                    </c:forEach>
-                </select>
-                <br>
-                <!-- Select de Disciplina   -->
-                <label for="Disciplina">Disciplina : </label>
-                <select class="custom-select mr-sm-1" name="codDisciplina"
-                    id="inputDisciplina">
-                    <!-- Carregando o select do Banco -->
-                <option value="<c:out value="${disciplinaR.disciplinaID}" />" /><c:out value="${disciplinaR.nome}" /></option>
-                    <c:forEach items="${discplinaD}" var="d">
-                    <option value="${d.disciplinaID}" />${d.nome}</option>
-                    </c:forEach>
-                </select>
-                <br>
-                <button type="submit" value="form1">Pesquisar</button>
+                        <!-- Carregando o select do Banco -->
+                        <option value="<c:out value="${turmaR.turmaID}" />" />
+                        <c:out value="${turmaR.serie}" /></option>
+                        <c:forEach items="${turmaD}" var="turma">
+                        <option value="${turma.turmaID}" />${turma.serie}</option>
+                        </c:forEach>
+                    </select>
+                    
+                    <label for="Disciplina">Disciplina : </label>
+                    <select class="custom-select mr-sm-1" name="codDisciplina"
+                        id="inputDisciplina">
+                        <!-- Carregando o select do Banco -->
+                    <option value="<c:out value="${disciplinaR.disciplinaID}" />" /><c:out value="${disciplinaR.nome}" /></option>
+                        <c:forEach items="${discplinaD}" var="d">
+                        <option value="${d.disciplinaID}" />${d.nome}</option>
+                        </c:forEach>
+                    </select>
+                    <br>
+                    <button type="submit" value="form1">Pesquisar</button>
+                </div>
             </form>
              
              <form method="POST"  name="frmNotas" action="${request.contextPath}notasController" var="form1" id="tabelaAluno">
@@ -107,12 +108,12 @@
                 <table border="1">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Nota 1</th>
-                            <th scope="col">Nota 2</th>
-                            <th scope="col">Nota 3</th>
-                            <th scope="col">Nota 4</th>
+                            <th style="color: white" scope="col">Matrícula</th>
+                            <th style="color: white" scope="col">Nome</th>
+                            <th style="color: white" scope="col">Nota 1</th>
+                            <th style="color: white" scope="col">Nota 2</th>
+                            <th style="color: white" scope="col">Nota 3</th>
+                            <th style="color: white" scope="col">Nota 4</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -180,7 +181,7 @@
                 <button type="submit">Enviar</button>
             </form>
         </div>
-    <footer id="myFooter">
+    <footer class="footer navbar-fixed-bottom" id="myFooter">
         <div class="container">
             <div class="row">
                 <div class="col">

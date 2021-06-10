@@ -106,6 +106,94 @@ public class DesempenhoDao {
         }
         return listaDesempenho;
     }
+    public List<Desempenho> turmaMedia(int turmaID) throws SQLException, IOException {
+        String sql = "SELECT cod_aluno,aluno.nome,disciplinas.nome disciplina,"
+                + "nota1,nota2,nota3,nota4,sum(nota1+nota2+nota3+nota4)/4 media"
+                + " FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno"
+                + " = aluno.cod_aluno INNER JOIN disciplinas ON"
+                + " desempenho.fk_disciplinaID = disciplinas.disciplinaID"
+                + " WHERE fk_turma = ? group by cod_aluno,aluno.nome,"
+                + "nota1,nota2,nota3,nota4";
+        
+        List<Desempenho> listaDesempenho = new ArrayList<>();
+        Connection conn = dbUtil.getConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, turmaID);
+            //Execultando o comando
+            ResultSet rst = stmt.executeQuery();
+
+            while (rst.next()) {
+                Desempenho desempenho = new Desempenho();
+                desempenho.setCod_aluno(rst.getInt("cod_aluno"));
+                desempenho.setNome(rst.getString("nome"));
+                desempenho.setDisciplina(rst.getString("disciplina"));
+                desempenho.setNota1(rst.getDouble("nota1"));
+                desempenho.setNota2(rst.getDouble("nota2"));
+                desempenho.setNota3(rst.getDouble("nota3"));
+                desempenho.setNota4(rst.getDouble("nota4"));
+                desempenho.setMedia(rst.getInt("media"));
+                if ( desempenho.getMedia() >=7)
+                    desempenho.setStatus("Aprovado");
+                else
+                    desempenho.setStatus("Reprovado");
+                listaDesempenho.add(desempenho);
+            }
+            conn.close();
+            stmt.close();
+            rst.close();
+        } catch (SQLException e) {
+            System.err.println("Ocorreu um erro ao tentar montar"
+                    + " a lista de média por turma: " + turmaID );
+        }
+        return listaDesempenho;
+    }
+    public List<Desempenho> turmaMediaDisciplina(int turmaID, int disciplinaID) throws SQLException, IOException {
+        String sql = "SELECT cod_aluno,aluno.nome,nota1,nota2,nota3,nota4,"
+                + "sum(nota1+nota2+nota3+nota4)/4 media FROM desempenho"
+                + " INNER JOIN aluno ON desempenho.fk_cod_aluno"
+                + " = aluno.cod_aluno INNER JOIN disciplinas ON"
+                + " desempenho.fk_disciplinaID = disciplinas.disciplinaID"
+                + " WHERE fk_turma = ? AND fk_disciplinaID = ?"
+                + " group by cod_aluno,aluno.nome,nota1,nota2,nota3,nota4";
+        
+        List<Desempenho> listaDesempenho = new ArrayList<>();
+        Connection conn = dbUtil.getConnection();
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, turmaID);
+            stmt.setInt(2, disciplinaID);
+            //Execultando o comando
+            ResultSet rst = stmt.executeQuery();
+
+            while (rst.next()) {
+                Desempenho desempenho = new Desempenho();
+                desempenho.setCod_aluno(rst.getInt("cod_aluno"));
+                desempenho.setNome(rst.getString("nome"));
+                desempenho.setNota1(rst.getDouble("nota1"));
+                desempenho.setNota2(rst.getDouble("nota2"));
+                desempenho.setNota3(rst.getDouble("nota3"));
+                desempenho.setNota4(rst.getDouble("nota4"));
+                desempenho.setMedia(rst.getInt("media"));
+                if ( desempenho.getMedia() >=7)
+                    desempenho.setStatus("Aprovado");
+                else
+                    desempenho.setStatus("Reprovado");
+                listaDesempenho.add(desempenho);
+            }
+            conn.close();
+            stmt.close();
+            rst.close();
+        } catch (SQLException e) {
+            System.err.println("Ocorreu um erro ao tentar montar"
+                    + " a lista de média por turma e disciplina: " + turmaID
+                    + disciplinaID);
+        }
+        return listaDesempenho;
+    }
+    
     public int qteAlunoTurma(int turmaID) throws SQLException, IOException {
         String sql = "SELECT sum(1) AS qteOco FROM desempenho INNER JOIN"
                 + " aluno ON desempenho.fk_cod_aluno = aluno.cod_aluno "
@@ -134,6 +222,7 @@ public class DesempenhoDao {
         }
         return obj.getQteOco();
     }
+    
     public List<Desempenho> desempenhoPorTurmaDisciplina(int turmaID, int disciplinaID) throws SQLException, IOException {
         String sql = "SELECT cod_aluno,nome,nota1,nota2,nota3,nota4,fk_disciplinaID "
                 + "FROM desempenho INNER JOIN aluno ON desempenho.fk_cod_aluno"
