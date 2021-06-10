@@ -38,9 +38,9 @@
                 Listagem
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="alunoController?action=ListAlunos">Alunos Matriculados</a>
-                <a class="dropdown-item" href="admController?action=ListProfessor">Professores</a>
-                <a class="dropdown-item" href="admController?action=ListAdm">Adiministrativo</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/alunoController?action=ListAluno">Alunos Matriculados</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/professorController?action=ListProfessor">Professores</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/admController?action=ListAdm">Adiministrativo</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -49,7 +49,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="${pageContext.request.contextPath}/notasController">Notas</a>
-                <a class="dropdown-item" href="${pageContext.request.contextPath}/cadastroProfessor">Presença</a>
+                <a class="dropdown-item" href="#">Presença</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/associarAluno">Associar Aluno a turma</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -57,70 +58,67 @@
                 Relátorios
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="alunoController?action=ListAlunos">Notas</a>
-                <a class="dropdown-item" href="admController?action=ListProfessor">Presença</a>
-                <a class="dropdown-item" href="admController?action=ListAdm">Boletim</a>
+                <a class="dropdown-item" href="#">Presença</a>
+                <a class="dropdown-item" href="${pageContext.request.contextPath}/boletim">Boletim</a>
             </div>
         </li>
-
-
     </div>
 </nav>
 
 <div class="container">
     <h1>Associar aluno a turma</h1>
-                    <form name="frmNotas" action="${request.contextPath}selection" id="turmaDisciplina">>
-                    <label for="serie" id="textcolor" >Série:</label>
-                    <select class="custom-select mr-sm-2" name="codTurma" id="inputTurma">
-                        <!-- Carregando o select do Banco -->
-                        <option value="" />Selecione</option>
-                        <c:forEach items="${turmas}" var="turma">
-                        <option value="${turma.turmaID}" />${turma.serie}</option>
-                        </c:forEach>
-                    </select>
-                    <c:if test="${not empty erroTurma}">
-                        <span class="msg-erro"><c:out value="${erroTurma}" /></span>
-                    </c:if>
-                        <br>
-                    <button type="submit" value="form1">Pesquisar</button>
-                    </form>
-                </div>
+    <form name="frmNotas" action="${request.contextPath}selection" id="turmaDisciplina">>
+        <label for="serie" id="textcolor" >Série:</label>
+        <select class="custom-select mr-sm-2" name="codTurma" id="inputTurma">
+            <!-- Carregando o select do Banco -->
+            <option value="" />Selecione</option>
+            <c:forEach items="${turmas}" var="turma">
+                <option value="${turma.turmaID}" />${turma.serie}</option>
+            </c:forEach>
+        </select>
+        <c:if test="${not empty erroTurma}">
+            <span class="msg-erro"><c:out value="${erroTurma}" /></span>
+        </c:if>
+        <br>
+        <button type="submit" value="form1">Pesquisar</button>
+    </form>
+</div>
 <div id="SelecaoAluno">
-                        <form  name="frmNotas" action="${request.contextPath}selection" var="form1">
-                        <label for="nome_aluno" id="textcolor">Aluno:</label>
-                        <select class="custom-select mr-sm-2" name="aluno"
-                        id="inputTurma">
-                        <!-- Carregando o select do Banco -->
-                        <option value="" />Selecione</option>
-                        <c:forEach items="${aluno}" var="alunos">
-                        <option value="${alunos.codAluno}" />${alunos.nome}</option>
-                        </c:forEach>
-                    </select>
-                    <c:if test="${not empty erroAluno}">
-                        <span class="msg-erro"><c:out value="${erroAluno}" /></span>
-                    </c:if>
-                        </form>
-                    </div>
+    <form  name="frmNotas" action="${request.contextPath}selection" var="form1">
+        <label for="nome_aluno" id="textcolor">Aluno:</label>
+        <select class="custom-select mr-sm-2" name="aluno"
+                id="inputTurma">
+            <!-- Carregando o select do Banco -->
+            <option value="" />Selecione</option>
+            <c:forEach items="${aluno}" var="alunos">
+                <option value="${alunos.codAluno}" />${alunos.nome}</option>
+            </c:forEach>
+        </select>
+        <c:if test="${not empty erroAluno}">
+            <span class="msg-erro"><c:out value="${erroAluno}" /></span>
+        </c:if>
+    </form>
+</div>
 
-            <div class="row">
-                <div class="col" id="tabelaTurma">
-                    <table class="table table-striped table-hover" id="table-title">
-                        <th id="textcolor"></th>
-                        <th id="textcolor">Turma</th>
-                        <th id="textcolor">Quantidade livre</th>
-                        <th id="textcolor">Opções</th>
-                    <c:forEach items="${alunos}" var="alunos">  
-                        <tr>
-                            <td id="textcolor">${alunos.turmaID}</td>
-                            <td id="textcolor">${alunos.Idlivre}</td>
-                            <td id="textcolor"> <button type="button" class="btn btn-primary">Associar</button></td>
-                        </tr> 
-                    </c:forEach>  
-                    </table>    
-                </div>
-            </div>
-        </div>
+<div class="row">
+    <div class="col" id="tabelaTurma">
+        <table class="table table-striped table-hover" id="table-title">
+            <th id="textcolor"></th>
+            <th id="textcolor">Turma</th>
+            <th id="textcolor">Quantidade livre</th>
+            <th id="textcolor">Opções</th>
+            <c:forEach items="${alunos}" var="alunos">
+                <tr>
+                    <td id="textcolor">${alunos.turmaID}</td>
+                    <td id="textcolor">${alunos.Idlivre}</td>
+                    <td id="textcolor"> <button type="button" class="btn btn-primary">Associar</button></td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
+</div>
+</div>
+</div>
 <footer class="footer navbar-fixed-bottom" id="myFooter">
     <div class="container">
         <div class="row">
