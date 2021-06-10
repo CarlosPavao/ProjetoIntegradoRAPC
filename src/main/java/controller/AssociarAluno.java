@@ -105,53 +105,55 @@ public class AssociarAluno extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         boolean temErro = false;
-        int codTurma = Integer.parseInt(request.getParameter("turmaCod"));
+        int codTurma;
         int codAluno;
         int qtdeTurma = 0;
+        
 
-        if (request.getParameter("aluno") == null
+
+        if (request.getParameter("turmaCod") == null ||
+                request.getParameter("turmaCod").equals("") && request.getParameter("aluno") == null
                 || request.getParameter("aluno").equals("")) {
             codAluno = 0;
             temErro = true;
-            request.setAttribute("erroAluno", "Selecione primeiro a série!");
-            try {
-                request.setAttribute("turmaD", daoT.recuperaListaTurmaDifer(codTurma));
-                request.setAttribute("turmaR", daoT.recuperaTurma(codTurma));
-                request.setAttribute("aluno", daoA.alunoSemTurma());
-            } catch (SQLException ex) {
-                Logger.getLogger(AssociarAluno.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            request.getRequestDispatcher("/WEB-INF/jsp/aluno/associar2.jsp").forward(request, response);
-
+            request.setAttribute("erroAluno", "Selecione um aluno!");
         } else {
             codAluno = Integer.parseInt(request.getParameter("aluno"));
         }
-        request.getRequestDispatcher("/WEB-INF/jsp/aluno/associar2.jsp").forward(request, response);
-        
-        
-        
-        
+        if(request.getParameter("turmaCod") == null ||
+                request.getParameter("turmaCod").equals("")){
+            codTurma = 0;
+            temErro = true;
+            request.setAttribute("erroTurma", "Selecione primeiro a série!");
+                }
+        else{
+            codTurma = Integer.parseInt(request.getParameter("turmaCod"));
+        }
         try {
             qtdeTurma = daoT.SelecionarDesempenho(codTurma).getQte();
         } catch (SQLException ex) {
             Logger.getLogger(AssociarAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-
-        if (qtdeTurma < 1) {
-            temErro = true;
-            request.setAttribute("erroTurma", "Esta série está lotada! "
-                    + "Verifique outra.");
+        if(codTurma == 0 || qtdeTurma <1 ){
+            try {
+                request.setAttribute("turmas", daoT.getAllTurmas());
+                request.setAttribute("aluno", daoA.alunoSemTurma());
+            } catch (SQLException ex) {
+                Logger.getLogger(AssociarAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+            request.getRequestDispatcher("/WEB-INF/jsp/aluno/associar2.jsp").forward(request, response);
+        }else if(codTurma != 0 && codAluno == 0 ){
             try {
                 request.setAttribute("turmaD", daoT.recuperaListaTurmaDifer(codTurma));
                 request.setAttribute("turmaR", daoT.recuperaTurma(codTurma));
                 request.setAttribute("aluno", daoA.alunoSemTurma());
+                request.setAttribute("turmaCod", codTurma);
             } catch (SQLException ex) {
                 Logger.getLogger(AssociarAluno.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.getRequestDispatcher("/WEB-INF/jsp/aluno/associar2.jsp").forward(request, response);
-        } else {
+        }
+        else {
             try {
                 daoT.associarAlunoTurma(codAluno, codTurma);
             } catch (SQLException ex) {

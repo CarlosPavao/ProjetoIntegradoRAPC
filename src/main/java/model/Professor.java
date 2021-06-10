@@ -23,8 +23,8 @@ public class Professor {
     private String complemento;
     private String bairro;
     private String cep;
-    private int    fk_disciplinaID;
-    private int    fk_disciplina2ID;
+    private int fk_disciplinaID;
+    private int fk_disciplina2ID;
     
 
     public Professor() {}
@@ -197,4 +197,6 @@ public class Professor {
     public void setFk_disciplina2ID(int fk_disciplina2ID) {
         this.fk_disciplina2ID = fk_disciplina2ID;
     }
+    
+
 }

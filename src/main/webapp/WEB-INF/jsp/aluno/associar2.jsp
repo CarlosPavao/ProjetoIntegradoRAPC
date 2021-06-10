@@ -101,7 +101,12 @@
                         ${alunos.nome}</option>
                     </c:forEach>
                 </select>
+                <c:if test="${not empty erroAluno}">
+                <span class="msg-erro"><c:out value="${erroAluno}"/></span>
+                </c:if>
                 <input type="hidden" name="turmaCod" value="<c:out value="${turmaCod}" />">
+            </form>
+
                 </div>
                 <div class="row">
                     <div class="col" id="tabelaTurma">
@@ -117,7 +122,6 @@
                                 </td>
                             </tr>
                         </table>
-                        </form>
                     </div>
                 </div>
         </div>
