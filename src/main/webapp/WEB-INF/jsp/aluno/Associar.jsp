@@ -73,7 +73,7 @@
         <h1>Associar aluno a turma</h1>
 
         <form name="frmSerie" action="${request.contextPath}selection" id="turmaDisciplina">
-            <label>Série:</label>
+            <label>Série : </label>
             <select class="custom-select mr-sm-2" name="codTurma" id="inputTurma">
                 <!-- Carregando o select do Banco -->
                 <option value=""/>
