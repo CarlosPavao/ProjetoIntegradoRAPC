@@ -66,6 +66,7 @@
         </li>
     </div>
 </nav>
+
 <div class="container" id="cadastro">
     <h4 class="centro">Cadastro de Aluno</h4>
     <form method="POST" action='${request.contextPath}alunoController' name="frmAddUser">
